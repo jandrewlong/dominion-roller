@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Dominion Roller</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="roller.css" type="text/css">
+<script src="../jquery/jquery-1.10.0.min.js"></script>
+<script src="roller.js"></script>
+<script src="roller_algo.js"></script>
+</head>
+<body>
+<div data-role="header">
+<h1>Dominion Roller</h1>
+</div><!-- /header -->
+<div data-role="content" class="app_page" id="card_selection_page">
+
+<h2>Card Selection</h2>
+<form name="card_selection_form" method="post" action="generate.php" data-ajax="false">
+
+<div data-role="fieldcontain" id="set_selection_container">
+<fieldset data-role="controlgroup" id="set_selection">
+<legend>Select a set or sets:</legend>
+<!-- available sets get inserted here -->
+</fieldset>
+</div><!-- /fieldcontain -->
+
+<div data-role="fieldcontain">
+<label for="genmode_cb">Algorithm:</label>
+<select name="genmode" id="genmode_cb">
+<option value="by_card" selected="selected">Default</option>
+<option value="by_set">By set</option>
+</select>
+</div><!-- /fieldcontain -->
+
+<button type="submit" id="generate_btn">Generate</button>
+</form>
+</div><!-- /card_selection_page -->
+
+<div data-role="content" class="app_page" id="cardset_page">
+<h2>Card Set <span class="set_number"></span></h2>
+
+<p>
+Kingdom Cards:
+</p>
+<ul class="kingdom_cards_list">
+</ul>
+<div class="support_cards_container">
+<p>
+Additional Cards Needed:
+</p>
+<ul class="support_cards_list">
+</ul>
+</div>
+
+
+<p>
+<button type="button" id="roll_another_btn">Roll Another</button>
+</p>
+
+</div><!-- /cardset_page -->
+
+<div data-role="content" class="app_page" id="error_page">
+<h2>Error</h2>
+
+<p class="errorMsg"></p>
+
+<p>
+<button type="button" id="go_home_btn">Home Page</button>
+</p>
+
+</div><!-- /error_page -->
+
+<div data-role="footer">
+<hr>
+Version 0.1
+</div><!-- /footer -->
+</body>
+</html>
