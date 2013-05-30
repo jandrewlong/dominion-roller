@@ -19,6 +19,12 @@ var all_cards = null;
 
 function init_global_data()
 {
+	var maybe_global_data_ready = function() {
+		if (all_cards) {
+			on_global_data_ready();
+		}
+	};
+
 	var onSuccess = function(data) {
 		all_cards = data.cards;
 
@@ -42,8 +48,9 @@ function init_global_data()
 			all_cards[i].set = proper_set_info[set_id];
 		}
 
-		on_global_data_ready();
+		maybe_global_data_ready();
 	};
+
 	$.ajax({
 	url: 'allcards.txt',
 	dataType: 'json',
@@ -129,8 +136,8 @@ function add_card_info(cardnames_array)
 
 function make_card_listitem(card_info)
 {
-	var $x = $('<li></li>');
-	$x.text(card_info.name + ' ('+card_info.set.name+')');
+	var $x = $('<li><span class="name"></span><span class="xtra"></span></li>');
+	$('.name', $x).text(card_info.name + ' ('+card_info.set.name+')');
 	return $x;
 }
 
@@ -157,7 +164,11 @@ function show_cardset(cardset)
 
 	var cards = arrange_cards(add_card_info(cardset.kingdom));
 	for (var i = 0; i < cards.length; i++) {
-		$('.kingdom_cards_list',$page).append(make_card_listitem(cards[i]));
+		var $tmp = make_card_listitem(cards[i]);
+		if (cards[i].name == cardset.bane_pile) {
+			$('.xtra',$tmp).append(' <span class="bane_flag"> &mdash; Young Witch\'s Bane</span>');
+		}
+		$('.kingdom_cards_list',$page).append($tmp);
 	}
 
 	if (cardset.support.length) {
