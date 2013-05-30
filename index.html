@@ -39,21 +39,19 @@
 <div data-role="content" class="app_page" id="cardset_page">
 <h2>Card Set <span class="set_number"></span></h2>
 
-<p>
-Kingdom Cards:
-</p>
-<ul class="kingdom_cards_list">
+<div class="cards_list_container">
+<legend>Kingdom Cards:</legend>
+<ul class="kingdom_cards_list cards_list">
 </ul>
-<div class="support_cards_container">
-<p>
-Additional Cards Needed:
-</p>
-<ul class="support_cards_list">
+</div>
+<div class="support_cards_container cards_list_container">
+<legend>Additional Cards Needed:</legend>
+<ul class="support_cards_list cards_list">
 </ul>
 </div>
 
 
-<p>
+<p style="clear:both">
 <button type="button" id="roll_another_btn">Roll Another</button>
 </p>
 
@@ -71,8 +69,7 @@ Additional Cards Needed:
 </div><!-- /error_page -->
 
 <div data-role="footer">
-<hr>
-Version 0.1
+<div class="version_notice">Version 0.1</div>
 </div><!-- /footer -->
 </body>
 </html>
