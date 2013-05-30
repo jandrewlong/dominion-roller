@@ -10,15 +10,12 @@ function shuffle_array(a)
 	return a;
 }
 
-// from given list of candidate kingdom cards, pick 10
 function make_cardlist_default(candidates)
 {
 	shuffle_array(candidates);
-	candidates.splice(10);
 	return candidates;
 }
 
-// from given list of candidate kingdom cards, pick 10
 function make_cardlist_by_set(candidates)
 {
 	shuffle_array(candidates);
@@ -34,24 +31,30 @@ function make_cardlist_by_set(candidates)
 		by_set[c.set_id].push(c);
 	}
 
+	var num_cards = candidates.length;
 	var cards = [];
 	var j = 0;
-	while (cards.length < 10 && j < 10 * setnames.length) {
+	while (cards.length < num_cards)
+	{
 		var s = setnames[j % setnames.length];
 		if (by_set[s].length > 0) {
 			var c = by_set[s].shift();
 			cards.push(c);
 		}
-		j++;
-	}
 
-	if (cards.length < 10) {
-		throw "Insufficient kingdom card count";
+		j++;
+		if (j >= num_cards * setnames.length) {
+			throw "Infinite loop detected (i="+cards.length+"/"+num_cards+", j="+j+")";
+		}
 	}
 
 	return cards;
 }
 
+// from given list of candidate kingdom cards, pick 10 to play with using some
+// sort of random-ish method. The result should be a re-arranged input array
+// such that the first 10 are the cards selected.
+//
 function make_cardlist(algo, candidates)
 {
 	if (algo == 'by_set') {
@@ -71,11 +74,13 @@ function make_cardset(cardlist)
 		throw "Insufficient kingdom card count";
 	}
 
+	var cardset = {};
 	var kingdom_cards = [];
 	var num_prosperity = 0;
 	var num_darkages = 0;
 	var needs_potion = false;
 	var needs_ruins = false;
+	var needs_bane = false;
 	for (var i = 0; i < 10; i++) {
 		var c = cardlist[i];
 		if (c.set_id == 'prosperity') {
@@ -90,8 +95,26 @@ function make_cardset(cardlist)
 		if (c.type.match(/Looter/)) {
 			needs_ruins = true;
 		}
+		if (c.name == 'Young Witch') {
+			needs_bane = true;
+		}
 		kingdom_cards.push(c.name);
 	}
+
+	if (needs_bane) {
+		// look for a qualifying "bane" card from unpicked cards
+		for (var i = 10; i < cardlist.length; i++) {
+			if (cardlist[i].cost == '2' || cardlist[i].cost == '3') {
+				kingdom_cards.push(cardlist[i].name);
+				cardset.bane_pile = cardlist[i].name;
+				break;
+			}
+		}
+		if (!cardset.bane_pile) {
+			throw "Unable to find a suitable Bane card for use with Young Witch";
+		}
+	}
+
 	var support_cards = [];
 	if (Math.random() < num_prosperity/10) {
 		support_cards.push("Platinum");
@@ -106,10 +129,10 @@ function make_cardset(cardlist)
 	if (needs_ruins) {
 		support_cards.push("Ruins");
 	}
-	return {
-		kingdom: kingdom_cards,
-		support: support_cards
-		};
+
+	cardset.kingdom = kingdom_cards;
+	cardset.support = support_cards;
+	return cardset;
 }
 
 function arrange_cards(cards_array)
