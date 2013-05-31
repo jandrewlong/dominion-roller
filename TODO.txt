@@ -1,0 +1,21 @@
+Indicate when any of the following supplies are required:
+ * Gold tokens (Seaside)
+ * Embargo tokens (Seaside)
+ * Island mats (Seaside)
+ * Native Village mats (Seaside)
+ * Pirate Ship mats (Seaside)
+ * Coin tokens (Prosperity)
+ * Trade Route mat (Prosperity)
+ * Victory tokens and Victory tokens mats (Prosperity)
+ * Prize cards pile (Cornucopia)
+ * Ruins pile (Dark Ages)
+ * Shelters cards (Dark Ages)
+ * Spoils (Dark Ages)
+ * Madman pile (Dark Ages)
+ * Mercenary pile (Dark Ages)
+
+Add support for playing with Promotional Cards
+
+Implement a Black Market helper
+  (it implements a virtual black market pile, i.e. a pile with every
+  potential kingdom card not actually in play)
