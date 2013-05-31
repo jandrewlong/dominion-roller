@@ -1,9 +1,3 @@
-function on_global_data_ready()
-{
-	window.addEventListener('popstate', on_state_init);
-	on_state_init();
-}
-
 $(function() {
 	$('#generate_btn').click(on_generate_clicked);
 	$('#roll_another_btn').click(on_roll_another_clicked);
@@ -16,16 +10,25 @@ if (BASE_URL.indexOf('?') != -1) {
 }
 
 var all_cards = null;
+var server_info = null;
+
+function on_global_data_ready()
+{
+	make_set_roller_buttons();
+
+	window.addEventListener('popstate', on_state_init);
+	on_state_init();
+}
 
 function init_global_data()
 {
 	var maybe_global_data_ready = function() {
-		if (all_cards) {
+		if (all_cards && server_info) {
 			on_global_data_ready();
 		}
 	};
 
-	var onSuccess = function(data) {
+	var onSuccess1 = function(data) {
 		all_cards = data.cards;
 
 		var proper_set_info = {};
@@ -54,10 +57,27 @@ function init_global_data()
 	$.ajax({
 	url: 'allcards.txt',
 	dataType: 'json',
-	success: onSuccess
+	success: onSuccess1
+	});
+
+	var onSuccess2 = function(data) {
+		server_info = data;
+		maybe_global_data_ready();
+	};
+
+	$.ajax({
+	url: 'cardset.php?info',
+	dataType: 'json',
+	success: onSuccess2
 	});
 }
 init_global_data();
+
+function navigate_to_cardset(setname)
+{
+	history.pushState(null, null, BASE_URL + '?cardset/' + setname);
+	on_state_init();
+}
 
 function on_generate_clicked(evt)
 {
@@ -71,8 +91,7 @@ function on_generate_clicked(evt)
 	var cardset = make_cardset(cardlist);
 
 	var onSuccess = function(data) {
-		history.pushState(null, null, BASE_URL + '?cardset/' + data.shortname);
-		on_state_init();
+		navigate_to_cardset(data.shortname);
 		};
 	var onError = function(jqx, status, errMsg) {
 		alert(errMsg);
@@ -157,6 +176,9 @@ function show_cardset(cardset)
 {
 	var $page = switch_to_page('cardset');
 
+	$('.set_roller .set_btn.selected').removeClass('selected');
+	$('.set_roller .set_btn[data-set-id='+cardset.shortname+']').addClass('selected');
+
 	$('.set_number', $page).text(cardset.shortname);
 
 	$('.kingdom_cards_list', $page).empty();
@@ -235,4 +257,23 @@ function on_roll_another_clicked(evt)
 {
 	history.pushState(null, null, BASE_URL);
 	on_state_init();
+}
+
+function make_set_roller_buttons()
+{
+	for (var i = 1; i <= server_info.last_set; i++){
+		var setname = ""+i;
+		var $b = $('<button class="set_btn"></button>');
+		$b.text(setname);
+		$b.attr('data-set-id', setname);
+		$b.click(on_set_roller_clicked);
+		$('.set_roller').append($b);
+	}
+}
+
+function on_set_roller_clicked(evt)
+{
+	var $btn = $(this);
+	var setname = $btn.attr('data-set-id');
+	navigate_to_cardset(setname);
 }

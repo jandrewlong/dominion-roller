@@ -61,3 +61,32 @@ div[data-role=footer] {
 .cards_list li:last-child {
 	border: none;
 }
+.set_roller_container {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	height: 60px;
+	border-bottom: 1px solid #888;
+	background-color: #dda;
+}
+.set_roller {
+	position: absolute;
+	width: 30000px;
+}
+.set_roller .set_btn {
+	display: block;
+	float: left;
+	border: 1px solid black;
+	width: 40px;
+	height: 40px;
+	margin-top: 10px;
+	text-align: center;
+	font-size: 24px;
+	line-height: 40px;
+	font-family: sans-serif;
+	margin-left: 8px;
+}
+.set_roller .set_btn.selected {
+	background-color: #aaf;
+	color: black;
+}
