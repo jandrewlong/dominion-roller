@@ -19,6 +19,8 @@ function on_global_data_ready()
 
 	window.addEventListener('popstate', on_state_init);
 	on_state_init();
+
+	refresh_server_info();
 }
 
 function init_global_data()
@@ -36,14 +38,20 @@ function init_global_data()
 		for (var i = 0, l = data.sets.length; i < l; i++) {
 			var set_info = data.sets[i];
 			proper_set_info[set_info.id] = set_info;
-			var $x = $('<label><input type="checkbox"><span class="set_name"></span></label>');
+			var $x = $('<div class="box_image_container"><div><input type="checkbox" class="box_image_btn"><span class="box_image_check"></span><img class="box_image"></div><div class="set_name"></div></div>');
 			$('input',$x).attr('name', 'inc_'+set_info.id);
+			$('img.box_image',$x).attr('src', 'images/'+set_info.image);
+			//$('img.box_image_check',$x).attr('src', 'images/checkmark1.png');
 			if (i == 0) {
 				$('input',$x).attr('checked','checked');
 			}
 			$('.set_name',$x).text(set_info.name);
+			add_box_image_listeners($x);
 			$('#set_selection').append($x);
 		}
+		client_state.sets = proper_set_info;
+
+		update_box_image_checks();
 
 		var numCards = all_cards.length;
 		for (var i = 0; i < numCards; i++) {
@@ -73,6 +81,38 @@ function init_global_data()
 	});
 }
 init_global_data();
+
+function add_box_image_listeners($box)
+{
+	if ('ontouchstart' in window) {
+	$box.get(0).addEventListener("touchstart", on_box_mousedown, false);
+	$box.get(0).addEventListener("touchend", on_box_mouseup, false);
+	}
+	else {
+	$box.mousedown(on_box_mousedown);
+	$box.mouseup(on_box_mouseup);
+	}
+}
+
+function refresh_server_info()
+{
+	var onSuccess2 = function(data) {
+		server_info.last_set = Math.max(server_info.last_set, data.last_set);
+		make_set_roller_buttons();
+	};
+
+	var doFetch;
+	doFetch = function() {
+		$.ajax({
+		url: 'cardset.php?info',
+		dataType: 'json',
+		success: onSuccess2
+		});
+		setTimeout(doFetch, 6000);
+	};
+
+	setTimeout(doFetch, 10000);
+}
 
 function navigate_to_cardset(setname)
 {
@@ -171,11 +211,18 @@ function show_card_selection_page()
 {
 	var $page = switch_to_page('card_selection');
 	$('#generate_btn', $page).removeAttr('disabled');
+	$('.set_btn.selected').removeClass('selected');
+	scroll_set_roller();
 }
 
 function show_cardset(cardset)
 {
 	var $page = switch_to_page('cardset');
+
+	if ((+server_info.last_set) < (+cardset.shortname)) {
+		server_info.last_set = +cardset.shortname;
+		make_set_roller_buttons();
+	}
 
 	$('.set_roller .set_btn.selected').removeClass('selected');
 	$('.set_roller .set_btn[data-set-id='+cardset.shortname+']').addClass('selected');
@@ -261,16 +308,28 @@ function on_roll_another_clicked(evt)
 	on_state_init();
 }
 
+function format_setname(setnumber)
+{
+	var set_suit = Math.floor(setnumber/10) % 26;
+	var set_rank = setnumber % 10;
+	return String.fromCharCode(set_suit+65) + String.fromCharCode(set_rank+48);
+}
+
 function make_set_roller_buttons()
 {
-	for (var i = 1; i <= server_info.last_set; i++){
-		var setname = ""+i;
+	var my_last = client_state.last_set_button;
+	if (!my_last) {
+		my_last = Math.max(0, server_info.last_set-200);
+	}
+	for (var i = my_last+1; i <= server_info.last_set; i++){
+		var setnumber = i;
 		var $b = $('<button class="set_btn"></button>');
-		$b.text(setname);
-		$b.attr('data-set-id', setname);
+		$b.text(format_setname(setnumber));
+		$b.attr('data-set-id', setnumber);
 		$b.click(on_set_roller_clicked);
 		$('.set_roller').append($b);
 	}
+	client_state.last_set_button = server_info.last_set;
 }
 
 function on_set_roller_clicked(evt)
@@ -292,7 +351,12 @@ function scroll_set_roller()
 	}
 
 	var $btn = $('.set_roller .set_btn.selected');
-	if (!$btn.length) return;
+	if (!$btn.length) {
+		$btn = $('.set_roller .set_btn:last');
+	}
+	if (!$btn.length) {
+		return;
+	}
 
 	var xcoord = $btn.position().left;
 	var window_width = $('.set_roller_container').innerWidth();
@@ -306,4 +370,38 @@ function scroll_set_roller()
 	$('.set_roller').css({
 		left: xoffset+'px'
 		});
+}
+
+function on_box_mousedown(evt)
+{
+	evt.preventDefault();
+	$(this).addClass('mousehold');
+
+	evt.stopPropagation();
+	return;
+}
+
+function update_box_image_checks()
+{
+	$('.box_image_container').each(function(i,el) {
+		if ($('input.box_image_btn',$(el)).get(0).checked) {
+			$(el).addClass('selected');
+		} else {
+			$(el).removeClass('selected');
+		}
+	});
+}
+
+function on_box_mouseup(evt)
+{
+	evt.preventDefault();
+	$(this).removeClass('mousehold');
+
+	var cbEl = $('input.box_image_btn',$(this)).get(0);
+	cbEl.checked = !cbEl.checked;
+
+	update_box_image_checks();
+
+	evt.stopPropagation();
+	return;
 }

@@ -43,7 +43,7 @@ function make_cardlist_by_set(candidates)
 		}
 
 		j++;
-		if (j >= num_cards * setnames.length) {
+		if (j > num_cards * setnames.length) {
 			throw "Infinite loop detected (i="+cards.length+"/"+num_cards+", j="+j+")";
 		}
 	}
