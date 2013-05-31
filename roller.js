@@ -11,6 +11,7 @@ if (BASE_URL.indexOf('?') != -1) {
 
 var all_cards = null;
 var server_info = null;
+var client_state = {};
 
 function on_global_data_ready()
 {
@@ -178,6 +179,7 @@ function show_cardset(cardset)
 
 	$('.set_roller .set_btn.selected').removeClass('selected');
 	$('.set_roller .set_btn[data-set-id='+cardset.shortname+']').addClass('selected');
+	scroll_set_roller();
 
 	$('.set_number', $page).text(cardset.shortname);
 
@@ -276,4 +278,32 @@ function on_set_roller_clicked(evt)
 	var $btn = $(this);
 	var setname = $btn.attr('data-set-id');
 	navigate_to_cardset(setname);
+}
+
+function scroll_set_roller()
+{
+	if (client_state.did_first_scroll) {
+		$('.set_roller').css({
+			transition: "left 0.75s"
+		});
+	} else {
+		$('.set_roller').show();
+		client_state.did_first_scroll = true;
+	}
+
+	var $btn = $('.set_roller .set_btn.selected');
+	if (!$btn.length) return;
+
+	var xcoord = $btn.position().left;
+	var window_width = $('.set_roller_container').innerWidth();
+	var centercoord = Math.round(window_width/2);
+
+	var xoffset = centercoord-(xcoord+48/2);
+	var firstcoord = $('.set_roller .set_btn:first').position().left;
+	var lastcoord = $('.set_roller .set_btn:last').position().left;
+	//alert(firstcoord+' '+lastcoord+' '+window_width);
+
+	$('.set_roller').css({
+		left: xoffset+'px'
+		});
 }

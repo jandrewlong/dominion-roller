@@ -72,6 +72,7 @@ div[data-role=footer] {
 .set_roller {
 	position: absolute;
 	width: 30000px;
+	display: none;
 }
 .set_roller .set_btn {
 	display: block;
