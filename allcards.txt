@@ -193,13 +193,13 @@
 {"name":"Ruins","set":"darkages","type":"Special","cost":"0","special":true}
 ],
 "sets":[
-{"id":"base","name":"Base"},
-{"id":"intrigue","name":"Intrigue"},
-{"id":"seaside","name":"Seaside"},
-{"id":"alchemy","name":"Alchemy"},
-{"id":"prosperity","name":"Prosperity"},
-{"id":"cornucopia","name":"Cornucopia"},
-{"id":"hinterlands","name":"Hinterlands"},
-{"id":"darkages","name":"Dark Ages"}
+{"id":"base","name":"Base","image":"Dominion.jpg"},
+{"id":"intrigue","name":"Intrigue","image":"Intrigue.jpg"},
+{"id":"seaside","name":"Seaside","image":"Seaside.jpg"},
+{"id":"alchemy","name":"Alchemy","image":"Alchemy.jpg"},
+{"id":"prosperity","name":"Prosperity","image":"Prosperity.jpg"},
+{"id":"cornucopia","name":"Cornucopia","image":"Cornucopia.jpg"},
+{"id":"hinterlands","name":"Hinterlands","image":"299px-Hinterlands.jpg"},
+{"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg"}
 ]
 }
