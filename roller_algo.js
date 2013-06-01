@@ -16,19 +16,19 @@ function make_cardlist_default(candidates)
 	return candidates;
 }
 
-function make_cardlist_by_set(candidates)
+function make_cardlist_by_box(candidates)
 {
 	shuffle_array(candidates);
 
-	var by_set = {};
-	var setnames = [];
+	var by_box = {};
+	var boxnames = [];
 	for (var i = 0; i < candidates.length; i++) {
 		var c = candidates[i];
-		if (!by_set[c.set_id]) {
-			by_set[c.set_id] = [];
-			setnames.push(c.set_id);
+		if (!by_box[c.box_id]) {
+			by_box[c.box_id] = [];
+			boxnames.push(c.box_id);
 		}
-		by_set[c.set_id].push(c);
+		by_box[c.box_id].push(c);
 	}
 
 	var num_cards = candidates.length;
@@ -36,14 +36,14 @@ function make_cardlist_by_set(candidates)
 	var j = 0;
 	while (cards.length < num_cards)
 	{
-		var s = setnames[j % setnames.length];
-		if (by_set[s].length > 0) {
-			var c = by_set[s].shift();
+		var s = boxnames[j % boxnames.length];
+		if (by_box[s].length > 0) {
+			var c = by_box[s].shift();
 			cards.push(c);
 		}
 
 		j++;
-		if (j > num_cards * setnames.length) {
+		if (j > num_cards * boxnames.length) {
 			throw "Infinite loop detected (i="+cards.length+"/"+num_cards+", j="+j+")";
 		}
 	}
@@ -57,8 +57,8 @@ function make_cardlist_by_set(candidates)
 //
 function make_cardlist(algo, candidates)
 {
-	if (algo == 'by_set') {
-		return make_cardlist_by_set(candidates);
+	if (algo == 'by_box') {
+		return make_cardlist_by_box(candidates);
 	}
 	else {
 		return make_cardlist_default(candidates);
@@ -83,10 +83,10 @@ function make_cardset(cardlist)
 	var needs_bane = false;
 	for (var i = 0; i < 10; i++) {
 		var c = cardlist[i];
-		if (c.set_id == 'prosperity') {
+		if (c.box_id == 'prosperity') {
 			num_prosperity++;
 		}
-		if (c.set_id == 'darkages') {
+		if (c.box_id == 'darkages') {
 			num_darkages++;
 		}
 		if (c.cost.substr(-1) == 'P') {
@@ -138,7 +138,7 @@ function make_cardset(cardlist)
 function arrange_cards(cards_array)
 {
 	cards_array.sort(function(a,b) {
-		var x = a.set_id.localeCompare(b.set_id);
+		var x = a.box_id.localeCompare(b.box_id);
 		if (x != 0) { return x; }
 		return a.name.localeCompare(b.name);
 	});

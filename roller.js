@@ -4,6 +4,7 @@ $(function() {
 	$('#go_home_btn').click(on_go_home_clicked);
 });
 
+var PACKAGE = 'dominion-roller';
 var BASE_URL = location.href;
 if (BASE_URL.indexOf('?') != -1) {
 	BASE_URL = BASE_URL.substring(0, BASE_URL.indexOf('?'));
@@ -34,30 +35,40 @@ function init_global_data()
 	var onSuccess1 = function(data) {
 		all_cards = data.cards;
 
-		var proper_set_info = {};
-		for (var i = 0, l = data.sets.length; i < l; i++) {
-			var set_info = data.sets[i];
-			proper_set_info[set_info.id] = set_info;
-			var $x = $('<div class="box_image_container"><div><input type="checkbox" class="box_image_btn"><span class="box_image_check"></span><img class="box_image"></div><div class="set_name"></div></div>');
-			$('input',$x).attr('name', 'inc_'+set_info.id);
-			$('img.box_image',$x).attr('src', 'images/'+set_info.image);
-			//$('img.box_image_check',$x).attr('src', 'images/checkmark1.png');
-			if (i == 0) {
+		var selected_boxes = {};
+		var tmp_str = localStorage.getItem(PACKAGE+'.selected-boxes');
+		if (!tmp_str) {
+			tmp_str = 'base';
+		}
+		var tmp_arr = tmp_str.split(/,/);
+		for (var i = 0; i < tmp_arr.length; i++) {
+			selected_boxes[tmp_arr[i]]=true;
+		}
+
+		var proper_box_info = {};
+		for (var i = 0, l = data.boxes.length; i < l; i++) {
+			var box_info = data.boxes[i];
+			proper_box_info[box_info.id] = box_info;
+			var $x = $('<div class="box_image_container"><div><input type="checkbox" class="box_image_btn"><span class="box_image_check"></span><img class="box_image"></div><div class="box_name"></div></div>');
+			$('input',$x).attr('name', 'inc_'+box_info.id);
+			$('img.box_image',$x).attr('src', 'images/'+box_info.image);
+			if (selected_boxes[box_info.id]) {
 				$('input',$x).attr('checked','checked');
 			}
-			$('.set_name',$x).text(set_info.name);
+			$('.box_name',$x).text(box_info.name);
 			add_box_image_listeners($x);
-			$('#set_selection').append($x);
+			$x.attr('data-box-id', box_info.id);
+			$('#box_selection').append($x);
 		}
-		client_state.sets = proper_set_info;
+		client_state.boxes = proper_box_info;
 
 		update_box_image_checks();
 
 		var numCards = all_cards.length;
 		for (var i = 0; i < numCards; i++) {
-			var set_id = all_cards[i].set;
-			all_cards[i].set_id = set_id;
-			all_cards[i].set = proper_set_info[set_id];
+			var box_id = all_cards[i].box;
+			all_cards[i].box_id = box_id;
+			all_cards[i].box = proper_box_info[box_id];
 		}
 
 		maybe_global_data_ready();
@@ -158,8 +169,8 @@ function make_candidates()
 		// ignore "special" cards, they'll be added later
 		if (all_cards[i].special) { continue; }
 
-		var a_set = all_cards[i].set_id;
-		var cb = document.card_selection_form["inc_"+a_set];
+		var a_box = all_cards[i].box_id;
+		var cb = document.card_selection_form["inc_"+a_box];
 		if (cb && cb.checked) {
 			candidates.push(all_cards[i]);
 		}
@@ -197,7 +208,7 @@ function add_card_info(cardnames_array)
 function make_card_listitem(card_info)
 {
 	var $x = $('<li><span class="name"></span><span class="xtra"></span></li>');
-	$('.name', $x).text(card_info.name + ' ('+card_info.set.name+')');
+	$('.name', $x).text(card_info.name + ' ('+card_info.box.name+')');
 	return $x;
 }
 
@@ -383,13 +394,17 @@ function on_box_mousedown(evt)
 
 function update_box_image_checks()
 {
+	var found = [];
 	$('.box_image_container').each(function(i,el) {
 		if ($('input.box_image_btn',$(el)).get(0).checked) {
 			$(el).addClass('selected');
+			found.push(el.getAttribute('data-box-id'));
 		} else {
 			$(el).removeClass('selected');
 		}
 	});
+
+	localStorage.setItem(PACKAGE + '.selected-boxes', found.join(','));
 }
 
 function on_box_mouseup(evt)
