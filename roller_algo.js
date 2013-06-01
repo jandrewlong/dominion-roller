@@ -16,6 +16,27 @@ function make_cardlist_default(candidates)
 	return candidates;
 }
 
+function make_cardlist_pickN(candidates, n)
+{
+	shuffle_array(candidates);
+
+	var found_count = 0;
+	var found = {};
+	var cards = [];
+	for (var i = 0; i < candidates.length; i++) {
+		var c = candidates[i];
+		if (!found[c.box_id] && found_count < n) {
+			found[c.box_id] = true;
+			found_count++;
+		}
+		if (found[c.box_id]) {
+			cards.push(c);
+		}
+	}
+
+	return make_cardlist_by_box(cards);
+}
+
 function make_cardlist_by_box(candidates)
 {
 	shuffle_array(candidates);
@@ -59,6 +80,19 @@ function make_cardlist(algo, candidates)
 {
 	if (algo == 'by_box') {
 		return make_cardlist_by_box(candidates);
+	}
+	else if (algo == 'pick_1') {
+		return make_cardlist_pickN(candidates, 1);
+	}
+	else if (algo == 'pick_2') {
+		return make_cardlist_pickN(candidates, 2);
+	}
+	else if (algo == 'pick_3') {
+		return make_cardlist_pickN(candidates, 3);
+	}
+	else if (algo == 'pick_1_3') {
+		var n = Math.floor(Math.random()*3)+1;
+		return make_cardlist_pickN(candidates, n);
 	}
 	else {
 		return make_cardlist_default(candidates);
