@@ -49,7 +49,7 @@ function init_global_data()
 		for (var i = 0, l = data.boxes.length; i < l; i++) {
 			var box_info = data.boxes[i];
 			proper_box_info[box_info.id] = box_info;
-			var $x = $('<div class="box_image_container"><div><input type="checkbox" class="box_image_btn"><span class="box_image_check"></span><img class="box_image"></div><div class="box_name"></div></div>');
+			var $x = $('<div class="box_selection_btn"><span class="box_image_check"></span><div class="box_image_container"><input type="checkbox" class="box_image_btn"><img class="box_image"></div><div class="box_name"></div></div>');
 			$('input',$x).attr('name', 'inc_'+box_info.id);
 			$('img.box_image',$x).attr('src', 'images/'+box_info.image);
 			if (selected_boxes[box_info.id]) {
@@ -395,7 +395,7 @@ function on_box_mousedown(evt)
 function update_box_image_checks()
 {
 	var found = [];
-	$('.box_image_container').each(function(i,el) {
+	$('.box_selection_btn').each(function(i,el) {
 		if ($('input.box_image_btn',$(el)).get(0).checked) {
 			$(el).addClass('selected');
 			found.push(el.getAttribute('data-box-id'));
