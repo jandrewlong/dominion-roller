@@ -55,11 +55,14 @@ div[data-role=footer] {
 	font-size: 12pt;
 	padding-top: 3pt;
 	padding-bottom: 3pt;
-	padding-left: 6pt;
+	padding-left: 2pt;
 	padding-right: 6pt;
 }
 .cards_list li:last-child {
 	border: none;
+}
+.cards_list li .card_icon {
+	margin-right: 4pt;
 }
 .set_roller_container {
 	position: relative;

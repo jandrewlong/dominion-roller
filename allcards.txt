@@ -193,13 +193,13 @@
 {"name":"Ruins","box":"darkages","type":"Special","cost":"0","special":true}
 ],
 "boxes":[
-{"id":"base","name":"Base","image":"Dominion.jpg"},
-{"id":"intrigue","name":"Intrigue","image":"Intrigue.jpg"},
-{"id":"seaside","name":"Seaside","image":"Seaside.jpg"},
-{"id":"alchemy","name":"Alchemy","image":"Alchemy.jpg"},
-{"id":"prosperity","name":"Prosperity","image":"Prosperity.jpg"},
-{"id":"cornucopia","name":"Cornucopia","image":"Cornucopia.jpg"},
-{"id":"hinterlands","name":"Hinterlands","image":"299px-Hinterlands.jpg"},
-{"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg"}
+{"id":"base","name":"Base","image":"Dominion.jpg","icon_image":"20px-Dominion_icon.png"},
+{"id":"intrigue","name":"Intrigue","image":"Intrigue.jpg","icon_image":"20px-Intrigue_icon.png"},
+{"id":"seaside","name":"Seaside","image":"Seaside.jpg","icon_image":"16px-Seaside_icon.png"},
+{"id":"alchemy","name":"Alchemy","image":"Alchemy.jpg","icon_image":"12px-Alchemy_icon.png"},
+{"id":"prosperity","name":"Prosperity","image":"Prosperity.jpg","icon_image":"20px-Prosperity_icon.png"},
+{"id":"cornucopia","name":"Cornucopia","image":"Cornucopia.jpg","icon_image":"19px-Cornucopia_icon.png"},
+{"id":"hinterlands","name":"Hinterlands","image":"299px-Hinterlands.jpg","icon_image":"20px-Hinterlands_icon.png"},
+{"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg","icon_image":"17px-Dark_Ages_icon.png"}
 ]
 }

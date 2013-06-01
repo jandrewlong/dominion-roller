@@ -207,8 +207,17 @@ function add_card_info(cardnames_array)
 
 function make_card_listitem(card_info)
 {
-	var $x = $('<li><span class="name"></span><span class="xtra"></span></li>');
-	$('.name', $x).text(card_info.name + ' ('+card_info.box.name+')');
+	var $x = $('<li><img class="card_icon"><span class="name"></span><span class="xtra"></span></li>');
+	var caption = card_info.name;
+	if (card_info.box.icon_image) {
+		$('img.card_icon', $x).attr('src', 'images/'+card_info.box.icon_image);
+		$('img.card_icon', $x).attr('alt', '('+card_info.box.name+')');
+		$('img.card_icon', $x).attr('title', card_info.box.name);
+	}
+	else {
+		caption += ' (' + card_info.box.name + ')';
+	}
+	$('.name', $x).text(caption);
 	return $x;
 }
 
