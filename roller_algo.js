@@ -155,7 +155,7 @@ function make_cardset(cardlist)
 		support_cards.push("Colony");
 	}
 	if (Math.random() < num_darkages/10) {
-		support_cards.push("Shelter");
+		support_cards.push("Shelters");
 	}
 	if (needs_potion) {
 		support_cards.push("Potion");

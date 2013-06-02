@@ -189,7 +189,7 @@
 {"name":"Rogue","box":"darkages","type":"Action,Attack","cost":"5"},
 {"name":"Altar","box":"darkages","type":"Action","cost":"6"},
 {"name":"Hunting Grounds","box":"darkages","type":"Action","cost":"6"},
-{"name":"Shelter","box":"darkages","type":"Special","cost":"0","special":true},
+{"name":"Shelters","box":"darkages","type":"Special","cost":"0","special":true},
 {"name":"Ruins","box":"darkages","type":"Special","cost":"0","special":true}
 ],
 "boxes":[
