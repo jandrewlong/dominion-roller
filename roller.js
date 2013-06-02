@@ -262,8 +262,10 @@ function show_cardset(cardset)
 		$('.kingdom_cards_list',$page).append($tmp);
 	}
 
-	if (cardset.support.length) {
-		cards = arrange_cards(add_card_info(cardset.support));
+	var support_names = make_support_list(cardset);
+	if (support_names.length)
+	{
+		cards = arrange_cards(add_card_info(support_names));
 		for (var i = 0; i < cards.length; i++) {
 			$('.support_cards_list',$page).append(make_card_listitem(cards[i]));
 		}

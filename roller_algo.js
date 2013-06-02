@@ -113,8 +113,6 @@ function make_cardset(cardlist)
 	var kingdom_card_info = {};
 	var num_prosperity = 0;
 	var num_darkages = 0;
-	var needs_potion = false;
-	var needs_ruins = false;
 	var needs_bane = false;
 	for (var i = 0; i < 10; i++) {
 		var c = cardlist[i];
@@ -123,12 +121,6 @@ function make_cardset(cardlist)
 		}
 		if (c.box_id == 'darkages') {
 			num_darkages++;
-		}
-		if (c.cost.substr(-1) == 'P') {
-			needs_potion = true;
-		}
-		if (c.type.match(/Looter/)) {
-			needs_ruins = true;
 		}
 		if (c.name == 'Young Witch') {
 			needs_bane = true;
@@ -152,37 +144,66 @@ function make_cardset(cardlist)
 			throw "Unable to find a suitable Bane card for use with Young Witch";
 		}
 	}
+	cardset.kingdom = kingdom_cards;
 
-	var support_card_added = {};
+	if (num_prosperity) {
+		cardset.use_platinum = (Math.random() < num_prosperity/10);
+		cardset.use_colony = cardset.use_platinum;
+	}
+	if (num_darkages) {
+		cardset.use_shelters = (Math.random() < num_darkages/10);
+	}
+
+	return cardset;
+}
+
+function make_support_list(cardset)
+{
 	var support_cards = [];
-	if (Math.random() < num_prosperity/10) {
+	var added = {};
+
+	if (cardset.use_platinum) {
 		support_cards.push("Platinum");
+		added["Platinum"] = true;
+	}
+	if (cardset.use_colony) {
 		support_cards.push("Colony");
+		added["Colony"] = true;
 	}
-	if (Math.random() < num_darkages/10) {
+	if (cardset.use_shelters) {
 		support_cards.push("Shelters");
+		added["Shelters"] = true;
 	}
-	if (needs_potion) {
-		support_cards.push("Potion");
-	}
-	if (needs_ruins) {
-		support_cards.push("Ruins");
-	}
-	for (var cardname in kingdom_card_info) {
-		var c = kingdom_card_info[cardname];
+
+	for (var i = 0; i < cardset.kingdom.length; i++) {
+		var cardname = cardset.kingdom[i];
+		var c = get_card_info(cardname);
+
+		if (c.cost.substr(-1) == 'P') {
+			if (!added["Potion"]) {
+				support_cards.push("Potion");
+				added["Potion"] = true;
+			}
+		}
+
+		if (c.type.match(/Looter/)) {
+			if (!added["Ruins"]) {
+				support_cards.push("Ruins");
+				added["Ruins"] = true;
+			}
+		}
+
 		if (c.requires) {
-			for (var i = 0; i < c.requires.length; i++) {
-				if (!support_card_added[c.requires[i]]) {
-					support_cards.push(c.requires[i]);
-					support_card_added[c.requires[i]]=true;
+			for (var j = 0; j < c.requires.length; j++) {
+				if (!added[c.requires[j]]) {
+					support_cards.push(c.requires[j]);
+					added[c.requires[j]]=true;
 				}
 			}
 		}
 	}
 
-	cardset.kingdom = kingdom_cards;
-	cardset.support = support_cards;
-	return cardset;
+	return support_cards;
 }
 
 function arrange_cards(cards_array)
@@ -194,4 +215,3 @@ function arrange_cards(cards_array)
 	});
 	return cards_array;
 }
-
