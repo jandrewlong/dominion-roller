@@ -44,6 +44,7 @@ div[data-role=footer] {
 	color: white;
 	font-weight: bold;
 	text-align: left;
+	padding-left: 2pt;
 }
 .cards_list {
 	list-style-type: none;
