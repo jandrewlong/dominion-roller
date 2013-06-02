@@ -24,15 +24,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$raw_post = file_get_contents('php://input');
 
-	$set_number = 1;
-	while (file_exists("$data_prefix/$set_number.txt")) {
-		$set_number++;
+	$lock_fh = fopen("$data_prefix/lockfile", "a")
+		or die("Cannot create lockfile");
+	flock($lock_fh, LOCK_EX)
+		or die("Cannot acquire lock");
+
+	$set_number = find_last_set_id() + 1;
+	if (file_exists("$data_prefix/$set_number.txt")) {
+		die("Oops set number $set_number already exists.");
 	}
 
 	$fp = fopen("$data_prefix/$set_number.txt", 'w')
 		or die("Error");
 	fwrite($fp, $raw_post);
 	fclose($fp);
+
+	flock($lock_fh, LOCK_UN);
+	fclose($lock_fh);
 
 	echo json_encode(array(
 		url => $_SERVER['REQUEST_URI'].'?set='.urlencode($set_number),
