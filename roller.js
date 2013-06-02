@@ -69,6 +69,7 @@ function init_global_data()
 			var box_id = all_cards[i].box;
 			all_cards[i].box_id = box_id;
 			all_cards[i].box = proper_box_info[box_id];
+			all_cards[i].name = (all_cards[i].name || all_cards[i].id);
 		}
 
 		maybe_global_data_ready();
@@ -125,9 +126,9 @@ function refresh_server_info()
 	setTimeout(doFetch, 10000);
 }
 
-function navigate_to_cardset(setname)
+function navigate_to_cardset(setnumber)
 {
-	history.pushState(null, null, BASE_URL + '?cardset/' + setname);
+	history.pushState(null, null, BASE_URL + '?cardset/' + setnumber);
 	on_state_init();
 }
 
@@ -185,10 +186,10 @@ function switch_to_page(pagename)
 	return $('#'+pagename+'_page');
 }
 
-function get_card_info(card_name)
+function get_card_info(cardname)
 {
 	for (var i = 0; i < all_cards.length; i++) {
-		if (all_cards[i].name == card_name) {
+		if (all_cards[i].id == cardname) {
 			return all_cards[i];
 		}
 	}
@@ -208,7 +209,7 @@ function add_card_info(cardnames_array)
 function make_card_listitem(card_info)
 {
 	var $x = $('<li><img class="card_icon"><span class="name"></span><span class="xtra"></span></li>');
-	var caption = card_info.name;
+	var caption = card_info.name || card_info.id;
 	if (card_info.box.icon_image) {
 		$('img.card_icon', $x).attr('src', 'images/'+card_info.box.icon_image);
 		$('img.card_icon', $x).attr('alt', '('+card_info.box.name+')');
@@ -256,16 +257,16 @@ function show_cardset(cardset)
 	var cards = arrange_cards(add_card_info(cardset.kingdom));
 	for (var i = 0; i < cards.length; i++) {
 		var $tmp = make_card_listitem(cards[i]);
-		if (cards[i].name == cardset.bane_pile) {
+		if (cards[i].id == cardset.bane_pile) {
 			$('.xtra',$tmp).append(' <span class="bane_flag"> &mdash; Young Witch\'s Bane</span>');
 		}
 		$('.kingdom_cards_list',$page).append($tmp);
 	}
 
-	var support_names = make_support_list(cardset);
-	if (support_names.length)
+	var support_list = make_support_list(cardset);
+	if (support_list.length)
 	{
-		cards = arrange_cards(add_card_info(support_names));
+		cards = arrange_cards(add_card_info(support_list));
 		for (var i = 0; i < cards.length; i++) {
 			$('.support_cards_list',$page).append(make_card_listitem(cards[i]));
 		}

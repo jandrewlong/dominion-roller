@@ -122,11 +122,11 @@ function make_cardset(cardlist)
 		if (c.box_id == 'darkages') {
 			num_darkages++;
 		}
-		if (c.name == 'Young Witch') {
+		if (c.id == 'Young Witch') {
 			needs_bane = true;
 		}
-		kingdom_cards.push(c.name);
-		kingdom_card_info[c.name] = c;
+		kingdom_cards.push(c.id);
+		kingdom_card_info[c.id] = c;
 	}
 
 	if (needs_bane) {
@@ -134,9 +134,9 @@ function make_cardset(cardlist)
 		for (var i = 10; i < cardlist.length; i++) {
 			var c = cardlist[i];
 			if (c.cost == '2' || c.cost == '3') {
-				kingdom_cards.push(c.name);
-				kingdom_card_info[c.name] = c;
-				cardset.bane_pile = c.name;
+				kingdom_cards.push(c.id);
+				kingdom_card_info[c.id] = c;
+				cardset.bane_pile = c.id;
 				break;
 			}
 		}
