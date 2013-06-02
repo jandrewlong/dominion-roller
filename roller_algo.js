@@ -159,20 +159,16 @@ function make_cardset(cardlist)
 
 function make_support_list(cardset)
 {
-	var support_cards = [];
-	var added = {};
+	var support_cards = {};
 
 	if (cardset.use_platinum) {
-		support_cards.push("Platinum");
-		added["Platinum"] = true;
+		support_cards["Platinum"] = true;
 	}
 	if (cardset.use_colony) {
-		support_cards.push("Colony");
-		added["Colony"] = true;
+		support_cards["Colony"] = true;
 	}
 	if (cardset.use_shelters) {
-		support_cards.push("Shelters");
-		added["Shelters"] = true;
+		support_cards["Shelters"] = true;
 	}
 
 	for (var i = 0; i < cardset.kingdom.length; i++) {
@@ -180,30 +176,26 @@ function make_support_list(cardset)
 		var c = get_card_info(cardname);
 
 		if (c.cost.substr(-1) == 'P') {
-			if (!added["Potion"]) {
-				support_cards.push("Potion");
-				added["Potion"] = true;
-			}
+			support_cards["Potion"] = true;
 		}
 
 		if (c.type.match(/Looter/)) {
-			if (!added["Ruins"]) {
-				support_cards.push("Ruins");
-				added["Ruins"] = true;
-			}
+			support_cards["Ruins"] = true;
 		}
 
 		if (c.requires) {
 			for (var j = 0; j < c.requires.length; j++) {
-				if (!added[c.requires[j]]) {
-					support_cards.push(c.requires[j]);
-					added[c.requires[j]]=true;
-				}
+				support_cards[c.requires[j]]=true;
 			}
 		}
 	}
 
-	return support_cards;
+	var as_list = [];
+	for (var cardname in support_cards) {
+		as_list.push(cardname);
+	}
+
+	return as_list;
 }
 
 function arrange_cards(cards_array)
