@@ -110,6 +110,7 @@ function make_cardset(cardlist)
 
 	var cardset = {};
 	var kingdom_cards = [];
+	var kingdom_card_info = {};
 	var num_prosperity = 0;
 	var num_darkages = 0;
 	var needs_potion = false;
@@ -133,14 +134,17 @@ function make_cardset(cardlist)
 			needs_bane = true;
 		}
 		kingdom_cards.push(c.name);
+		kingdom_card_info[c.name] = c;
 	}
 
 	if (needs_bane) {
 		// look for a qualifying "bane" card from unpicked cards
 		for (var i = 10; i < cardlist.length; i++) {
-			if (cardlist[i].cost == '2' || cardlist[i].cost == '3') {
-				kingdom_cards.push(cardlist[i].name);
-				cardset.bane_pile = cardlist[i].name;
+			var c = cardlist[i];
+			if (c.cost == '2' || c.cost == '3') {
+				kingdom_cards.push(c.name);
+				kingdom_card_info[c.name] = c;
+				cardset.bane_pile = c.name;
 				break;
 			}
 		}
@@ -149,6 +153,7 @@ function make_cardset(cardlist)
 		}
 	}
 
+	var support_card_added = {};
 	var support_cards = [];
 	if (Math.random() < num_prosperity/10) {
 		support_cards.push("Platinum");
@@ -162,6 +167,17 @@ function make_cardset(cardlist)
 	}
 	if (needs_ruins) {
 		support_cards.push("Ruins");
+	}
+	for (var cardname in kingdom_card_info) {
+		var c = kingdom_card_info[cardname];
+		if (c.requires) {
+			for (var i = 0; i < c.requires.length; i++) {
+				if (!support_card_added[c.requires[i]]) {
+					support_cards.push(c.requires[i]);
+					support_card_added[c.requires[i]]=true;
+				}
+			}
+		}
 	}
 
 	cardset.kingdom = kingdom_cards;
