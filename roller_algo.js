@@ -10,6 +10,76 @@ function shuffle_array(a)
 	return a;
 }
 
+function make_cardlist_alchem(candidates)
+{
+	// Ok, the way this works is this:
+	//  First, we calculate the probability of randomly drawing
+	//  exactly zero, three, four, or five alchemy cards from
+	//  all the available cards.
+	//  Then, using those probabilities as a probability distribution,
+	//  we randomly pick how many alchemy cards we will have.
+	//  Then we construct a random deck with that constraint.
+	//
+	// This technique is nearly the same as rerolling until we
+	//  find a random draw that has exactly 0, 3, 4, or 5 alchemy
+	//  cards, but avoids the excessive rerolling.
+
+	// count how many alchemy cards there are
+	var alchemy_cards = [];
+	var other_cards = [];
+	for (var i = 0; i < candidates.length; i++) {
+		var c = candidates[i];
+		if (c.box_id == 'alchemy') {
+			alchemy_cards.push(c);
+		}
+		else {
+			other_cards.push(c);
+		}
+	}
+
+	var p = alchemy_cards.length / candidates.length;
+	var probabilities = [];
+	var sum = 0;
+	for (var i = 0; i <= 10; i++) {
+		// the probability of drawing (with replacement)
+		// _exactly_ i alchemy cards
+		probabilities[i] = (i == 0 || i == 3 || i == 4 || i == 5) ?
+			Math.pow(p, i) * Math.pow(1.0-p, 10-i) :
+			0;
+		sum += probabilities[i];
+	}
+
+	if (sum == 0) {
+		// user is messing with us; there is no possible way
+		// to get between 3-5 alchemy cards...
+		// so just fall back on the default algorithm
+		return make_cardlist_default(candidates);
+	}
+
+	// decide how many alchemy cards we will use
+	var Z = Math.random() * sum;
+	var i = 0;
+	while (i < probabilities.length && Z >= probabilities[i]) {
+		Z -= probabilities[i];
+		i++;
+	}
+
+	var desired_alchemy_card_count = Math.min(5,i);
+
+	shuffle_array(alchemy_cards);
+	shuffle_array(other_cards);
+
+	var cards = [];
+	for (var i = 0; i < desired_alchemy_card_count; i++) {
+		cards.push(alchemy_cards[i]);
+	}
+	for (var i = 0; i < other_cards.length; i++) {
+		cards.push(other_cards[i]);
+	}
+
+	return cards;
+}
+
 function make_cardlist_default(candidates)
 {
 	shuffle_array(candidates);
@@ -80,6 +150,9 @@ function make_cardlist(algo, candidates)
 {
 	if (algo == 'by_box') {
 		return make_cardlist_by_box(candidates);
+	}
+	else if (algo == 'alchem') {
+		return make_cardlist_alchem(candidates);
 	}
 	else if (algo == 'pick_1') {
 		return make_cardlist_pickN(candidates, 1);

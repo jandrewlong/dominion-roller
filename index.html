@@ -30,10 +30,13 @@
 </fieldset>
 </div><!-- /fieldcontain -->
 
-<div data-role="fieldcontain">
+<fieldset>
+<legend>Generation options:</legend>
+<div data-role="fieldcontain" style="float:left; margin-right: 30pt">
 <label for="genmode_cb">Algorithm:</label>
 <select name="genmode" id="genmode_cb">
 <option value="by_card" selected="selected">Default</option>
+<option value="alchem">Enforce either 0 or 3-5 Alchemy cards</option>
 <option value="by_box">By box</option>
 <option value="pick_1">Pick 1</option>
 <option value="pick_2">Pick 2</option>
@@ -41,6 +44,13 @@
 <option value="pick_1_3">Pick 1 to 3</option>
 </select>
 </div><!-- /fieldcontain -->
+<div data-role="fieldcontain" style="float:left">
+<label>
+	<input type="checkbox" name="auto_exclude_recent">
+	Exclude cards used in my last generated set
+	</label>
+</div><!-- /fieldcontain -->
+</fieldset>
 
 <button type="submit" id="generate_btn">Generate</button>
 </form>

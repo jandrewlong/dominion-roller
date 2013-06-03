@@ -138,10 +138,13 @@ function on_generate_clicked(evt)
 	evt.preventDefault();
 
 	var my_algo = document.card_selection_form.genmode.value;
+	localStorage.setItem(PACKAGE + '.genmode', my_algo);
 
 	var candidates = make_candidates();
 	var cardlist = make_cardlist(my_algo, candidates);
 	var cardset = make_cardset(cardlist);
+
+	make_exclusion_list(cardset);
 
 	var onSuccess = function(data) {
 		navigate_to_cardset(data.shortname);
@@ -162,14 +165,76 @@ function on_generate_clicked(evt)
 	return false;
 }
 
+function make_exclusion_list(cardset)
+{
+	var exclusion_list = {};
+	var tmp = localStorage.getItem(PACKAGE+".auto_exclude");
+	if (tmp) {
+		var cardnames = tmp.split(/,/);
+		for (var i = 0; i < cardnames.length; i++) {
+			exclusion_list[cardnames[i]] = true;
+		}
+	}
+
+	for (var i = 0; i < cardset.kingdom.length; i++) {
+		exclusion_list[cardset.kingdom[i]] = true;
+	}
+
+	// check for conflicts with support stuff
+	var support_list = make_support_list(cardset);
+	for (var i = 0; i < support_list.length; i++) {
+		// check for any other potential kingdom cards that list
+		// this support item
+		for (var j = 0; j < all_cards.length; j++) {
+			var c = all_cards[j];
+			if (c.special) { continue; }
+			if (!c.requires) { continue; }
+
+			var found_any = false;
+			for (var k = 0; k < c.requires.length; k++) {
+				if (c.requires[k] == support_list[i]) {
+					found_any = true;
+				}
+			}
+			if (found_any) {
+				exclusion_list[c.id] = true;
+			}
+		}
+	}
+
+	var cardnames = [];
+	for (var cardname in exclusion_list) {
+		cardnames.push(cardname);
+	}
+
+	localStorage.setItem(PACKAGE+".auto_exclude", cardnames.join(','));
+}
+
 function make_candidates()
 {
+	var auto_exclude = {};
+	if (document.card_selection_form.auto_exclude_recent.checked)
+	{
+		var cardnames = (localStorage.getItem(PACKAGE+".auto_exclude")||"").split(/,/);
+		for (var i = 0; i < cardnames.length; i++) {
+			auto_exclude[cardnames[i]] = true;
+		}
+	}
+	else {
+		// no exclusion requested
+		localStorage.removeItem(PACKAGE+".auto_exclude");
+	}
+
 	var candidates = [];
 	for (var i = 0, l = all_cards.length; i < l; i++) {
 
 		// ignore "special" cards, they'll be added later
 		if (all_cards[i].special) { continue; }
 
+		// avoid explicitly excluded cards
+		if (auto_exclude[all_cards[i].id]) { continue; }
+
+		// check whether this card's box was selected
 		var a_box = all_cards[i].box_id;
 		var cb = document.card_selection_form["inc_"+a_box];
 		if (cb && cb.checked) {
