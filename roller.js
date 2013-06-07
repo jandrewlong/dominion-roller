@@ -1,6 +1,8 @@
 $(function() {
 	$('#generate_btn').click(on_generate_clicked);
 	$('#roll_another_btn').click(on_roll_another_clicked);
+	$('#export_btn').click(on_export_clicked);
+	$('#export_popup_dismiss_btn').click(on_export_popup_dismiss_clicked);
 	$('#go_home_btn').click(on_go_home_clicked);
 });
 
@@ -345,6 +347,7 @@ function show_cardset(cardset)
 function show_cardset_by_name(set_shortname)
 {
 	var onSuccess = function(data) {
+		$('#export_data_field').text(JSON.stringify(data));
 		var cardset = data;
 		cardset.shortname = set_shortname;
 		show_cardset(cardset);
@@ -496,4 +499,16 @@ function on_box_mouseup(evt)
 
 	evt.stopPropagation();
 	return;
+}
+
+function on_export_clicked()
+{
+	$('#export_popup').show();
+	$('#export_data_field').select();
+	$('#export_data_field').focus();
+}
+
+function on_export_popup_dismiss_clicked()
+{
+	$('#export_popup').hide();
 }

@@ -58,6 +58,13 @@
 
 <div data-role="content" class="app_page" id="cardset_page">
 
+<div id="export_popup">
+<form>
+<textarea id="export_data_field" rows="4" cols="48" readonly="readonly"></textarea>
+<div><button type="button" id="export_popup_dismiss_btn">Dismiss</button></div>
+</form>
+</div>
+
 <div class="cards_list_container">
 <div class="legend">Kingdom Cards:</div>
 <ul class="kingdom_cards_list cards_list">
@@ -72,6 +79,7 @@
 
 <p style="clear:both">
 <button type="button" id="roll_another_btn">Roll Another</button>
+<button type="button" id="export_btn">Export</button>
 </p>
 
 </div><!-- /cardset_page -->
