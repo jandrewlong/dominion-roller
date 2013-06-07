@@ -307,6 +307,8 @@ function show_cardset(cardset)
 {
 	var $page = switch_to_page('cardset');
 
+	$('#export_popup').hide();
+
 	if ((+server_info.last_set) < (+cardset.shortname)) {
 		server_info.last_set = +cardset.shortname;
 		make_set_roller_buttons();
