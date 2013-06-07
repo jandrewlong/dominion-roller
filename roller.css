@@ -90,6 +90,7 @@ div[data-role=footer] {
 	margin-left: 8px;
 	padding: 0;
 	overflow: hidden;
+	cursor: pointer;
 }
 .set_roller .set_btn.selected {
 	background-color: #aaf;
