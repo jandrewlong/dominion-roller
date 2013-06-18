@@ -260,7 +260,12 @@ function get_card_info(cardname)
 			return all_cards[i];
 		}
 	}
-	return null;
+	return {
+		id: cardname,
+		name: cardname,
+		box_id: 'unknown',
+		box: { id: 'unknown', name: 'Unknown' }
+		};
 }
 
 function add_card_info(cardnames_array)
@@ -386,6 +391,18 @@ function on_state_init()
 	var path_parts = path.split('/');
 	if (path_parts[0] == 'cardset') {
 		return show_cardset_by_name(path_parts[1]);
+	}
+	else if (path_parts[0] == 'display') {
+		var card_set_raw = decodeURIComponent(
+			path_parts[1].replace(/\+/g, '%20'));
+
+		$('#export_data_field').text(card_set_raw);
+		var cardset = JSON.parse(card_set_raw);
+		cardset.shortname = 'auto';
+		show_cardset(cardset);
+	}
+	else {
+		show_error_page('Invalid URL');
 	}
 }
 
