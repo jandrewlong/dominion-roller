@@ -194,7 +194,9 @@ function make_exclusion_list(cardset)
 
 			var found_any = false;
 			for (var k = 0; k < c.requires.length; k++) {
-				if (c.requires[k] == support_list[i]) {
+				if (c.requires[k] == support_list[i] &&
+					k != 'Coin Tokens')
+				{
 					found_any = true;
 				}
 			}
