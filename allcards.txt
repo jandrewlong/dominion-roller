@@ -196,12 +196,26 @@
 {"id":"Rogue","box":"darkages","type":"Action,Attack","cost":"5"},
 {"id":"Altar","box":"darkages","type":"Action","cost":"6"},
 {"id":"Hunting Grounds","box":"darkages","type":"Action","cost":"6"},
-{"id":"Knights","box":"darkages","type":"Knight","cost":"5"},
+{"id":"Knights","box":"darkages","type":"Action,Attack,Knight","cost":"5"},
 {"id":"Shelters","box":"darkages","type":"Special","cost":"0","special":true},
 {"id":"Ruins","box":"darkages","type":"Special","cost":"0","special":true},
 {"id":"Spoils","box":"darkages","special":true},
 {"id":"Madman","box":"darkages","special":true},
-{"id":"Mercenary","box":"darkages","special":true}
+{"id":"Mercenary","box":"darkages","special":true},
+{"id":"Plaza","box":"guilds","type":"Action","cost":"4","requires":["Coin Tokens"]},
+{"id":"Baker","box":"guilds","type":"Action","cost":"5","requires":["Coin Tokens"]},
+{"id":"Candlestick Maker","box":"guilds","type":"Action","cost":"2","requires":["Coin Tokens"]},
+{"id":"Merchant Guild","box":"guilds","type":"Action","cost":"5","requires":["Coin Tokens"]},
+{"id":"Masterpiece","box":"guilds","type":"Treasure","cost":"3"},
+{"id":"Stonemason","box":"guilds","type":"Action","cost":"2"},
+{"id":"Soothsayer","box":"guilds","type":"Action,Attack","cost":"5"},
+{"id":"Advisor","box":"guilds","type":"Action","cost":"4"},
+{"id":"Taxman","box":"guilds","type":"Action,Attack","cost":"4"},
+{"id":"Doctor","box":"guilds","type":"Action","cost":"3"},
+{"id":"Journeyman","box":"guilds","type":"Action","cost":"5"},
+{"id":"Butcher","box":"guilds","type":"Action","cost":"5","requires":["Coin Tokens"]},
+{"id":"Herald","box":"guilds","type":"Action","cost":"4"},
+{"id":"Coin Tokens","name":"Coin Tokens","box":"guilds","special":true}
 ],
 "boxes":[
 {"id":"base","name":"Base","image":"Dominion.jpg","icon_image":"20px-Dominion_icon.png"},
@@ -211,6 +225,7 @@
 {"id":"prosperity","name":"Prosperity","image":"Prosperity.jpg","icon_image":"20px-Prosperity_icon.png"},
 {"id":"cornucopia","name":"Cornucopia","image":"Cornucopia.jpg","icon_image":"19px-Cornucopia_icon.png"},
 {"id":"hinterlands","name":"Hinterlands","image":"299px-Hinterlands.jpg","icon_image":"20px-Hinterlands_icon.png"},
-{"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg","icon_image":"17px-Dark_Ages_icon.png"}
+{"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg","icon_image":"17px-Dark_Ages_icon.png"},
+{"id":"guilds","name":"Guilds","image":"Guilds.jpg","icon_image":"17px-Guilds_icon.png"}
 ]
 }
