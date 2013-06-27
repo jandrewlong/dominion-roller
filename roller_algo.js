@@ -294,10 +294,17 @@ function make_support_list(cardset)
 
 function arrange_cards(cards_array)
 {
-	cards_array.sort(function(a,b) {
-		var x = a.box_id.localeCompare(b.box_id);
-		if (x != 0) { return x; }
-		return a.name.localeCompare(b.name);
-	});
+	if (document.getElementById("sort_by_box_cbx").checked) {
+		cards_array.sort(function(a,b) {
+			var x = a.box_id.localeCompare(b.box_id);
+			if (x != 0) { return x; }
+			return a.name.localeCompare(b.name);
+		});
+	}
+	else {
+		cards_array.sort(function(a,b) {
+			return a.name.localeCompare(b.name);
+		});
+	}
 	return cards_array;
 }

@@ -4,6 +4,7 @@ $(function() {
 	$('#export_btn').click(on_export_clicked);
 	$('#export_popup_dismiss_btn').click(on_export_popup_dismiss_clicked);
 	$('#go_home_btn').click(on_go_home_clicked);
+	$('#sort_by_box_cbx').click(sort_by_box_clicked);
 });
 
 var PACKAGE = 'dominion-roller';
@@ -37,8 +38,19 @@ function init_global_data()
 	var onSuccess1 = function(data) {
 		all_cards = data.cards;
 
+		var tmp_str = localStorage.getItem(PACKAGE+'.sortmode');
+		if (!tmp_str) {
+			tmp_str = 'bybox';
+		}
+		if (tmp_str == 'alpha') {
+			document.getElementById("sort_by_box_cbx").checked = false;
+		}
+		else {
+			document.getElementById("sort_by_box_cbx").checked = true;
+		}
+		
 		var selected_boxes = {};
-		var tmp_str = localStorage.getItem(PACKAGE+'.selected-boxes');
+		tmp_str = localStorage.getItem(PACKAGE+'.selected-boxes');
 		if (!tmp_str) {
 			tmp_str = 'base';
 		}
@@ -482,6 +494,19 @@ function scroll_set_roller()
 	$('.set_roller').css({
 		left: xoffset+'px'
 		});
+}
+
+function sort_by_box_clicked()
+{
+	var tmp_str;
+	if (document.getElementById("sort_by_box_cbx").checked) {
+		tmp_str = "bybox";
+	}
+	else {
+		tmp_str = "alpha";
+	}
+	localStorage.setItem(PACKAGE + '.sortmode', tmp_str);
+	on_state_init();
 }
 
 function on_box_mousedown(evt)
