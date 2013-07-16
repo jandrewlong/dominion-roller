@@ -66,9 +66,6 @@ function make_cardlist_alchem(candidates)
 
 	var desired_alchemy_card_count = Math.min(5,i);
 
-	shuffle_array(alchemy_cards);
-	shuffle_array(other_cards);
-
 	var cards = [];
 	for (var i = 0; i < desired_alchemy_card_count; i++) {
 		cards.push(alchemy_cards[i]);
@@ -82,14 +79,11 @@ function make_cardlist_alchem(candidates)
 
 function make_cardlist_default(candidates)
 {
-	shuffle_array(candidates);
 	return candidates;
 }
 
 function make_cardlist_pickN(candidates, n)
 {
-	shuffle_array(candidates);
-
 	var found_count = 0;
 	var found = {};
 	var cards = [];
@@ -109,8 +103,6 @@ function make_cardlist_pickN(candidates, n)
 
 function make_cardlist_by_box(candidates)
 {
-	shuffle_array(candidates);
-
 	var by_box = {};
 	var boxnames = [];
 	for (var i = 0; i < candidates.length; i++) {

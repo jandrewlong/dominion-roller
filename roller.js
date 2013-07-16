@@ -156,6 +156,7 @@ function on_generate_clicked(evt)
 	localStorage.setItem(PACKAGE + '.genmode', my_algo);
 
 	var candidates = make_candidates();
+	candidates = shuffle_array(candidates);
 	var cardlist = make_cardlist(my_algo, candidates);
 	var cardset = make_cardset(cardlist);
 
