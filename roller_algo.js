@@ -10,6 +10,40 @@ function shuffle_array(a)
 	return a;
 }
 
+function shuffle_cards_with_weights(cards, weights)
+{
+	var get_weight = function(card) {
+		return +(weights[card.id] || weights['*'] || 1.0);
+	};
+
+	var C = [];
+	var R = [];
+	var sum = 0;
+	for (var i = 0; i < cards.length; i++) {
+		var f = get_weight(cards[i]);
+		C.push(cards[i]);
+		R.push(f);
+		sum += f;
+	}
+
+	var new_cards = [];
+	while (C.length > 0) {
+		var r = Math.random() * sum;
+		var orig_r = r;
+		var i = 0;
+		while (i + 1 < R.length && r >= R[i]) {
+			r -= R[i];
+			i++;
+		}
+
+		new_cards.push(C[i]);
+		sum -= R[i];
+		C.splice(i,1);
+		R.splice(i,1);
+	}
+	return new_cards;
+}
+
 function make_cardlist_alchem(candidates)
 {
 	// Ok, the way this works is this:

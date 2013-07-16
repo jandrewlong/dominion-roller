@@ -156,7 +156,15 @@ function on_generate_clicked(evt)
 	localStorage.setItem(PACKAGE + '.genmode', my_algo);
 
 	var candidates = make_candidates();
-	candidates = shuffle_array(candidates);
+
+	if (document.card_selection_form.use_custom_weights.checked) {
+		var my_weights = parse_weights(document.card_selection_form.custom_weights.value);
+		candidates = shuffle_cards_with_weights(candidates, my_weights);
+	}
+	else {
+		candidates = shuffle_array(candidates);
+	}
+
 	var cardlist = make_cardlist(my_algo, candidates);
 	var cardset = make_cardset(cardlist);
 
@@ -569,4 +577,24 @@ function on_custom_weights_clicked()
 	} else {
 		$('#custom_weights_box').hide();
 	}
+}
+
+function parse_weights(str)
+{
+	var W = {};
+	var lines = str.split(/\n/);
+	for (var i = 0; i < lines.length; i++) {
+		var line = lines[i];
+		line = line.replace(/--.*/, "");
+		line = line.trim();
+		if (line == '') { continue; }
+
+		var m = /^(\S+)\s+(.*)$/.exec(line);
+		if (!m) { continue; }
+
+		var card_weight = m[1];
+		var card_name = m[2];
+		W[card_name] = card_weight;
+	}
+	return W;
 }
