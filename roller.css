@@ -158,3 +158,10 @@ div[data-role=footer] {
 	margin-left: 10pt;
 	padding: 4pt;
 }
+.gen_options div[data-role=fieldcontain] {
+	float:left;
+	margin-right: 30pt;
+}
+#custom_weights_box {
+	display: none;
+}

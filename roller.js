@@ -5,6 +5,7 @@ $(function() {
 	$('#export_popup_dismiss_btn').click(on_export_popup_dismiss_clicked);
 	$('#go_home_btn').click(on_go_home_clicked);
 	$('#sort_by_box_cbx').click(sort_by_box_clicked);
+	$('#use_custom_weights_cbx').click(on_custom_weights_clicked);
 });
 
 var PACKAGE = 'dominion-roller';
@@ -557,4 +558,14 @@ function on_export_clicked()
 function on_export_popup_dismiss_clicked()
 {
 	$('#export_popup').hide();
+}
+
+function on_custom_weights_clicked()
+{
+	var el = document.getElementById('use_custom_weights_cbx');
+	if (el.checked) {
+		$('#custom_weights_box').show();
+	} else {
+		$('#custom_weights_box').hide();
+	}
 }

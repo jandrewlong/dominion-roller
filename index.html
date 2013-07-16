@@ -30,9 +30,9 @@
 </fieldset>
 </div><!-- /fieldcontain -->
 
-<fieldset>
+<fieldset class="gen_options">
 <legend>Generation options:</legend>
-<div data-role="fieldcontain" style="float:left; margin-right: 30pt">
+<div data-role="fieldcontain">
 <label for="genmode_cb">Algorithm:</label>
 <select name="genmode" id="genmode_cb">
 <option value="by_card" selected="selected">Default</option>
@@ -44,11 +44,20 @@
 <option value="pick_1_3">Pick 1 to 3</option>
 </select>
 </div><!-- /fieldcontain -->
-<div data-role="fieldcontain" style="float:left">
+<div data-role="fieldcontain">
 <label>
 	<input type="checkbox" name="auto_exclude_recent">
 	Exclude cards used in my last generated set
 	</label>
+</div><!-- /fieldcontain -->
+<div data-role="fieldcontain">
+	<div>
+	<input type="checkbox" name="use_custom_weights" id="use_custom_weights_cbx">
+	<label for="use_custom_weights_cbx">Use a custom random distribution...</label>
+	</div>
+	<textarea id="custom_weights_box" name="custom_weights" rows="4" cols="50">-- sample distribution, replace with your own
+2.0  Moat  -- makes Moat 2x as likely to occur
+0.25 Witch -- makes Witch 1/4 as likely to occur</textarea>
 </div><!-- /fieldcontain -->
 </fieldset>
 
