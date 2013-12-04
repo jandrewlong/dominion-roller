@@ -442,6 +442,16 @@ function cache_cardset(cardset)
 
 function show_cardset_by_name(set_shortname)
 {
+	var tmp = localStorage.getItem(PACKAGE+'.cached_cardset['+set_shortname+']');
+	if (tmp) {
+		var cardset = JSON.parse(tmp);
+		delete cardset.shortname;
+		$('#export_data_field').text(JSON.stringify(cardset));
+		cardset.shortname = set_shortname;
+		show_cardset(cardset);
+		return;
+	}
+
 	var onSuccess = function(data) {
 		$('#export_data_field').text(JSON.stringify(data));
 		var cardset = data;
@@ -454,6 +464,7 @@ function show_cardset_by_name(set_shortname)
 			return show_error_page("Card Set "+set_shortname+" Not Found");
 		}
 		alert(errMsg);
+		go_offline();
 		};
 
 	$.ajax({
