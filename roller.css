@@ -179,3 +179,18 @@ div[data-role=footer] {
 #custom_weights_box {
 	display: none;
 }
+
+#networkErrorBox {
+	position: absolute;
+	left: 10%;
+	right: 10%;
+	top: 10%;
+	height: 2in;
+	border: 2px solid black;
+	color: red;
+	font-weight: bold;
+	z-index: 10;
+	background-color: white;
+	padding: 0.5em 0.25em;
+	display: none;
+}

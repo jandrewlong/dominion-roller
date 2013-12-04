@@ -112,7 +112,7 @@ function init_global_data()
 	};
 
 	$.ajax({
-	url: 'allcards.txt',
+	url: 'allcards.txt',      //cached, should work even if offline
 	dataType: 'json',
 	success: onSuccess1
 	});
@@ -122,10 +122,18 @@ function init_global_data()
 		maybe_global_data_ready();
 	};
 
+	var onError2 = function(jqXHR, textStatus, errorThrown) {
+		$('#networkErrorBox .message').text(
+			"Sorry, unable to connect to server."
+			);
+		$('#networkErrorBox').show();
+	};
+
 	$.ajax({
-	url: 'cardset.php?info',
+	url: 'cardset.php?info',   // not cached, won't work if offline
 	dataType: 'json',
-	success: onSuccess2
+	success: onSuccess2,
+	error: onError2
 	});
 }
 init_global_data();
