@@ -41,7 +41,7 @@ var client_state = {};
 
 function save_server_info()
 {
-	localStorage.setItem(PACKAGE + '.cached_server_info', JSON.stringify(data));
+	localStorage.setItem(PACKAGE + '.cached_server_info', JSON.stringify(server_info));
 }
 
 function on_global_data_ready()
@@ -184,6 +184,7 @@ function refresh_server_info()
 		server_info.last_set = Math.max(server_info.last_set, data.last_set);
 		save_server_info();
 		make_set_roller_buttons();
+		go_online();
 	};
 
 	var doFetch;
@@ -191,7 +192,8 @@ function refresh_server_info()
 		$.ajax({
 		url: 'cardset.php?info',
 		dataType: 'json',
-		success: onSuccess2
+		success: onSuccess2,
+		error: go_offline
 		});
 		setTimeout(doFetch, 6000);
 	};
