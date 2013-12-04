@@ -1,0 +1,31 @@
+CACHE MANIFEST
+#rev 1
+
+allcards.txt
+index.html
+roller.css
+roller.js
+roller_algo.js
+images/12px-Alchemy_icon.png
+images/16px-Seaside_icon.png
+images/17px-Dark_Ages_icon.png
+images/17px-Guilds_icon.png
+images/19px-Cornucopia_icon.png
+images/20px-Dominion_icon.png
+images/20px-Hinterlands_icon.png
+images/20px-Intrigue_icon.png
+images/20px-Prosperity_icon.png
+images/20px-Seaside_icon.png
+images/299px-Hinterlands.jpg
+images/300px-Dark_Ages.jpg
+images/Alchemy.jpg
+images/checkmark1.png
+images/checkmark2.png
+images/Cornucopia.jpg
+images/Dominion.jpg
+images/Guilds.jpg
+images/Intrigue.jpg
+images/Prosperity.jpg
+images/Seaside.jpg
+NETWORK:
+cardset.php
