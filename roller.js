@@ -51,6 +51,11 @@ function on_global_data_ready()
 
 function init_global_data()
 {
+	var tmp = localStorage.getItem(PACKAGE+".cached_server_info");
+	if (tmp) {
+		server_info = JSON.parse(tmp);
+	}
+
 	var maybe_global_data_ready = function() {
 		if (all_cards && server_info) {
 			on_global_data_ready();
@@ -119,14 +124,17 @@ function init_global_data()
 
 	var onSuccess2 = function(data) {
 		server_info = data;
+		localStorage.setItem(PACKAGE + '.cached_server_info', JSON.stringify(data));
 		maybe_global_data_ready();
 	};
 
 	var onError2 = function(jqXHR, textStatus, errorThrown) {
-		$('#networkErrorBox .message').text(
-			"Sorry, unable to connect to server."
-			);
-		$('#networkErrorBox').show();
+		if (server_info == null) {
+			$('#networkErrorBox .message').text(
+				"Sorry, unable to connect to server."
+				);
+			$('#networkErrorBox').show();
+		}
 	};
 
 	$.ajax({
