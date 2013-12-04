@@ -39,6 +39,11 @@ var all_cards = null;
 var server_info = null;
 var client_state = {};
 
+function save_server_info()
+{
+	localStorage.setItem(PACKAGE + '.cached_server_info', JSON.stringify(data));
+}
+
 function on_global_data_ready()
 {
 	make_set_roller_buttons();
@@ -124,7 +129,7 @@ function init_global_data()
 
 	var onSuccess2 = function(data) {
 		server_info = data;
-		localStorage.setItem(PACKAGE + '.cached_server_info', JSON.stringify(data));
+		save_server_info();
 		maybe_global_data_ready();
 	};
 
@@ -162,6 +167,7 @@ function refresh_server_info()
 {
 	var onSuccess2 = function(data) {
 		server_info.last_set = Math.max(server_info.last_set, data.last_set);
+		save_server_info();
 		make_set_roller_buttons();
 	};
 
@@ -377,6 +383,7 @@ function show_cardset(cardset)
 
 	if ((+server_info.last_set) < (+cardset.shortname)) {
 		server_info.last_set = +cardset.shortname;
+		save_server_info();
 		make_set_roller_buttons();
 	}
 
