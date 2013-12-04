@@ -229,6 +229,22 @@ function on_generate_clicked(evt)
 	var cardset = make_cardset(cardlist);
 
 	make_exclusion_list(cardset);
+	post_new_cardset(cardset);
+
+	return false;
+}
+
+function post_new_cardset(cardset)
+{
+	if ($('body').hasClass('offline')) {
+		var a_name = 'p.1';
+		localStorage.setItem(PACKAGE+'.cached_cardset['+a_name+']',
+			JSON.stringify(cardset)
+			);
+		localStorage.setItem(PACKAGE+'.pending_cardsets', a_name);
+		navigate_to_cardset(a_name);
+		return;
+	}
 
 	var onSuccess = function(data) {
 		navigate_to_cardset(data.shortname);
@@ -246,7 +262,6 @@ function on_generate_clicked(evt)
 	success: onSuccess,
 	error: onError,
 	});
-	return false;
 }
 
 function make_exclusion_list(cardset)
@@ -395,7 +410,7 @@ function show_card_selection_page()
 function select_cardset_btn(setnumber)
 {
 	$('.set_roller .set_btn.selected').removeClass('selected');
-	$('.set_roller .set_btn[data-set-id='+setnumber+']').addClass('selected');
+	$('.set_roller .set_btn[data-set-id="'+setnumber+'"]').addClass('selected');
 	scroll_set_roller();
 }
 
@@ -444,7 +459,7 @@ function show_cardset(cardset)
 function cache_cardset(cardset)
 {
 	localStorage.setItem(PACKAGE+'.cached_cardset['+cardset.shortname+']',JSON.stringify(cardset));
-	$('.set_roller .set_btn[data-set-id='+cardset.shortname+']').addClass('cached');
+	$('.set_roller .set_btn[data-set-id="'+cardset.shortname+'"]').addClass('cached');
 }
 
 function show_cardset_by_name(set_shortname)
@@ -531,9 +546,25 @@ function on_roll_another_clicked(evt)
 
 function format_setname(setnumber)
 {
+	if (setnumber == 'p.1') {
+		return String.fromCharCode(945);
+	}
+
 	var set_suit = Math.floor(setnumber/10) % 26;
 	var set_rank = setnumber % 10;
 	return String.fromCharCode(set_suit+65) + String.fromCharCode(set_rank+48);
+}
+
+function make_set_roller_btn(setnumber)
+{
+	var $b = $('<button class="set_btn"></button>');
+	$b.text(format_setname(setnumber));
+	$b.attr('data-set-id', setnumber);
+	$b.click(on_set_roller_clicked);
+	if (localStorage.getItem(PACKAGE+'.cached_cardset['+setnumber+']') != null) {
+		$b.addClass('cached');
+	}
+	return $b;
 }
 
 function make_set_roller_buttons()
@@ -543,16 +574,20 @@ function make_set_roller_buttons()
 		my_last = Math.max(0, server_info.last_set-200);
 	}
 	for (var i = my_last+1; i <= server_info.last_set; i++){
-		var setnumber = i;
-		var $b = $('<button class="set_btn"></button>');
-		$b.text(format_setname(setnumber));
-		$b.attr('data-set-id', setnumber);
-		$b.click(on_set_roller_clicked);
-		if (localStorage.getItem(PACKAGE+'.cached_cardset['+setnumber+']') != null) {
-			$b.addClass('cached');
-		}
+		var $b = make_set_roller_btn(i);
 		$('.set_roller').append($b);
 	}
+	for (var i = 1; i <= 4; i++) {
+		var setname = 'p.'+i;
+		var $p = $('.set_roller .set_btn[data-set-id="'+setname+'"]');
+		if ($p.length) { continue; }
+
+		if (localStorage.getItem(PACKAGE+'.cached_cardset['+setname+']')) {
+			var $b = make_set_roller_btn(setname);
+			$('.set_roller').append($b);
+		}
+	}
+
 	client_state.last_set_button = server_info.last_set;
 }
 
