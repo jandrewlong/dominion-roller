@@ -58,10 +58,7 @@ function on_global_data_ready()
 function go_offline()
 {
 	if (server_info == null) {
-		$('#networkErrorBox .message').text(
-			"Sorry, unable to connect to server."
-			);
-		$('#networkErrorBox').show();
+		show_error_page("Sorry, the system is down.");
 		return;
 	}
 
