@@ -98,6 +98,11 @@ div[data-role=footer] {
 }
 body.offline .set_roller .set_btn {
 	color: #ccc;
+	border-color: #888;
+}
+body.offline .set_roller .set_btn.cached {
+	color: black;
+	border-color: black;
 }
 
 .smallScreen .box_selection_btn {

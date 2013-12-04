@@ -434,12 +434,19 @@ function show_cardset(cardset)
 	}
 }
 
+function cache_cardset(cardset)
+{
+	localStorage.setItem(PACKAGE+'.cached_cardset['+cardset.shortname+']',JSON.stringify(cardset));
+	$('.set_roller .set_btn[data-set-id='+cardset.shortname+']').addClass('cached');
+}
+
 function show_cardset_by_name(set_shortname)
 {
 	var onSuccess = function(data) {
 		$('#export_data_field').text(JSON.stringify(data));
 		var cardset = data;
 		cardset.shortname = set_shortname;
+		cache_cardset(cardset);
 		show_cardset(cardset);
 	};
 	var onError = function(jqx, status, errMsg) {
@@ -520,6 +527,9 @@ function make_set_roller_buttons()
 		$b.text(format_setname(setnumber));
 		$b.attr('data-set-id', setnumber);
 		$b.click(on_set_roller_clicked);
+		if (localStorage.getItem(PACKAGE+'.cached_cardset['+setnumber+']') != null) {
+			$b.addClass('cached');
+		}
 		$('.set_roller').append($b);
 	}
 	client_state.last_set_button = server_info.last_set;
