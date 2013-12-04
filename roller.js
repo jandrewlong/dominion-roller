@@ -6,7 +6,28 @@ $(function() {
 	$('#go_home_btn').click(on_go_home_clicked);
 	$('#sort_by_box_cbx').click(sort_by_box_clicked);
 	$('#use_custom_weights_cbx').click(on_custom_weights_clicked);
+	check_screen_size();
+	window.onresize = check_screen_size;
 });
+
+function check_screen_size()
+{
+	if (window.innerWidth <= window.innerHeight) {
+		$('body').removeClass('landscape');
+		$('body').addClass('portrait');
+	}
+	else {
+		$('body').removeClass('portrait');
+		$('body').addClass('landscape');
+	}
+
+	if (window.innerWidth <= 320) {
+		$('body').addClass('smallScreen');
+	}
+	else {
+		$('body').removeClass('smallScreen');
+	}
+}
 
 var PACKAGE = 'dominion-roller';
 var BASE_URL = location.href;

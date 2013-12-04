@@ -96,6 +96,10 @@ div[data-role=footer] {
 	background-color: #aaf;
 	color: black;
 }
+.smallScreen .box_selection_btn {
+	height: 116px;
+	width: 100px;
+}
 .box_selection_btn {
 	height: 176px;
 	width: 150px;
@@ -116,7 +120,12 @@ div[data-role=footer] {
 	text-align: center;
 }
 .box_image {
+	width: 150px;
 	height: 150px;
+}
+.smallScreen .box_image {
+	width: 100px;
+	height: 100px;
 }
 .box_selection_btn.mousehold, .box_selection_btn.mousehold.selected {
 	border: 4px solid #000;
@@ -131,6 +140,11 @@ div[data-role=footer] {
 	z-index: 1;
 	width: 150px;
 	height: 150px;
+}
+.smallScreen .box_image_check {
+	background-size: 100px 100px;
+	width: 100px;
+	height: 100px;
 }
 .box_selection_btn.selected .box_image_check {
 	background-image: url(images/checkmark1.png);
