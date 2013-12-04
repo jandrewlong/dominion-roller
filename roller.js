@@ -390,6 +390,13 @@ function show_card_selection_page()
 	scroll_set_roller();
 }
 
+function select_cardset_btn(setnumber)
+{
+	$('.set_roller .set_btn.selected').removeClass('selected');
+	$('.set_roller .set_btn[data-set-id='+setnumber+']').addClass('selected');
+	scroll_set_roller();
+}
+
 function show_cardset(cardset)
 {
 	var $page = switch_to_page('cardset');
@@ -402,9 +409,7 @@ function show_cardset(cardset)
 		make_set_roller_buttons();
 	}
 
-	$('.set_roller .set_btn.selected').removeClass('selected');
-	$('.set_roller .set_btn[data-set-id='+cardset.shortname+']').addClass('selected');
-	scroll_set_roller();
+	select_cardset_btn(cardset.shortname);
 
 	$('.set_number', $page).text(cardset.shortname);
 
@@ -453,6 +458,7 @@ function show_cardset_by_name(set_shortname)
 	}
 
 	var onSuccess = function(data) {
+		go_online();
 		$('#export_data_field').text(JSON.stringify(data));
 		var cardset = data;
 		cardset.shortname = set_shortname;
@@ -460,10 +466,12 @@ function show_cardset_by_name(set_shortname)
 		show_cardset(cardset);
 	};
 	var onError = function(jqx, status, errMsg) {
+		select_cardset_btn(set_shortname);
 		if (errMsg == 'Not Found') {
 			return show_error_page("Card Set "+set_shortname+" Not Found");
 		}
-		alert(errMsg);
+		// any other error we'll treat as a network/offline problem
+		show_error_page("Cannot access this card set while offline.");
 		go_offline();
 		};
 
