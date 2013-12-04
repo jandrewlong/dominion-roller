@@ -96,6 +96,10 @@ div[data-role=footer] {
 	background-color: #aaf;
 	color: black;
 }
+body.offline .set_roller .set_btn {
+	color: #ccc;
+}
+
 .smallScreen .box_selection_btn {
 	height: 116px;
 	width: 100px;

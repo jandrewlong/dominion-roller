@@ -54,6 +54,32 @@ function on_global_data_ready()
 	refresh_server_info();
 }
 
+// called when there are problems connecting to the server
+function go_offline()
+{
+	if (server_info == null) {
+		$('#networkErrorBox .message').text(
+			"Sorry, unable to connect to server."
+			);
+		$('#networkErrorBox').show();
+		return;
+	}
+
+	if (!server_info.offline) {
+		server_info.offline = true;
+		$('body').addClass('offline');
+	}
+}
+
+// called when we know a connection to the server is available
+function go_online()
+{
+	if (server_info.offline) {
+		delete server_info.offline;
+		$('body').removeClass('offline');
+	}
+}
+
 function init_global_data()
 {
 	var tmp = localStorage.getItem(PACKAGE+".cached_server_info");
@@ -131,22 +157,14 @@ function init_global_data()
 		server_info = data;
 		save_server_info();
 		maybe_global_data_ready();
-	};
-
-	var onError2 = function(jqXHR, textStatus, errorThrown) {
-		if (server_info == null) {
-			$('#networkErrorBox .message').text(
-				"Sorry, unable to connect to server."
-				);
-			$('#networkErrorBox').show();
-		}
+		go_online();
 	};
 
 	$.ajax({
 	url: 'cardset.php?info',   // not cached, won't work if offline
 	dataType: 'json',
 	success: onSuccess2,
-	error: onError2
+	error: go_offline
 	});
 }
 init_global_data();
