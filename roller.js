@@ -144,11 +144,19 @@ function init_global_data()
 		maybe_global_data_ready();
 	};
 
-	$.ajax({
-	url: 'allcards.txt',      //cached, should work even if offline
-	dataType: 'json',
-	success: onSuccess1
-	});
+	var onError = function(jqx, status, errMsg) {
+		show_error_page("Error retrieving card data. "
+			+"The status was '"+status+"'; error thrown was '"
+				+errMsg+"'");
+		};
+
+//	$.ajax({
+//	url: 'allcards.txt',      //cached, should work even if offline
+//	dataType: 'json',
+//	success: onSuccess1,
+//	error: onError
+//	});
+	onSuccess1(allcards_data);
 
 	var onSuccess2 = function(data) {
 		server_info = data;

@@ -1,3 +1,4 @@
+allcards_data=
 {"cards":[
 {"id":"Cellar","box":"base","type":"Action","cost":"2"},
 {"id":"Chapel","box":"base","type":"Action","cost":"2"},
