@@ -164,7 +164,7 @@ function init_global_data()
 	error: go_offline
 	});
 }
-init_global_data();
+$(init_global_data);
 
 function add_box_image_listeners($box)
 {
