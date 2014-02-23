@@ -1,0 +1,68 @@
+<project name="dominion-roller" default="build">
+
+<property name="package-version" value="0.1" />
+<property name="warfile" value="${ant.project.name}.war" />
+
+<path id="build-classpath">
+  <fileset dir="extlib">
+    <include name="*.jar" />
+  </fileset>
+</path>
+
+<path id="catalina-ant-classpath">
+<fileset dir="tomcat_libs">
+	<include name="*.jar" />
+</fileset>
+</path>
+
+<target name="init-builddir">
+<mkdir dir="build/classes" />
+</target>
+
+<target name="compile" depends="init-builddir">
+<javac srcdir="src" destdir="build/classes"
+	classpathref="build-classpath"
+	includeantruntime="false"
+	debug="true" debuglevel="lines,vars,source"
+	source="1.7" target="1.7"
+	>
+	<compilerarg value="-Xlint:unchecked" />
+	<compilerarg value="-Xlint:deprecation" />
+</javac>
+</target>
+
+<target name="copy-resources" depends="init-builddir">
+<!--
+<copy todir="build">
+	<fileset dir="strings" />
+</copy>
+-->
+</target>
+
+<target name="build" depends="copy-resources,compile">
+<pathconvert property="runtime-classpath" pathsep=" " refid="build-classpath">
+<map from="${basedir}" to="." />
+</pathconvert>
+<war destfile="${warfile}" webxml="web.xml">
+	<fileset dir="webapp" />
+	<classes dir="build/classes" />
+	<lib dir="extlib" excludes="tomcat-servlet-api.jar" />
+</war>
+</target>
+
+<target name="deploy" depends="build">
+<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"
+	classpathref="catalina-ant-classpath" />
+<deploy url="http://localhost:8080/manager/text"
+	username="tomcat" password="secret430"
+	path="/${ant.project.name}" update="true"
+	war="${warfile}"
+	/>
+</target>
+
+<target name="clean">
+<delete dir="build" />
+<delete file="${warfile}" />
+</target>
+
+</project>
