@@ -3,5 +3,14 @@
 <display-name>dominion-roller</display-name>
 <description>Dominion Roller</description>
 
+<servlet>
+	<servlet-name>cardset</servlet-name>
+	<servlet-class>dominionroller.CardSetServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>cardset</servlet-name>
+	<url-pattern>/cardset.php</url-pattern>
+</servlet-mapping>
 
 </web-app>
