@@ -216,7 +216,37 @@ allcards_data=
 {"id":"Journeyman","box":"guilds","type":"Action","cost":"5"},
 {"id":"Butcher","box":"guilds","type":"Action","cost":"5","requires":["Coin Tokens"]},
 {"id":"Herald","box":"guilds","type":"Action","cost":"4"},
-{"id":"Coin Tokens","name":"Coin Tokens","box":"guilds","special":true}
+{"id":"Coin Tokens","name":"Coin Tokens","box":"guilds","special":true},
+{"id":"Distant Lands","box":"adventures","type":"Action,Reserve,Victory","cost":"5","requires":["Tavern Mat"]},
+{"id":"Port","box":"adventures","type":"Action","cost":"4"},
+{"id":"Coin of the Realm","box":"adventures","type":"Treasure,Reserve","cost":"2","requires":["Tavern Mat"]},
+{"id":"Page","box":"adventures","type":"Action,Traveller","cost":"2","requires":["Page Upgrades"]},
+{"id":"Peasant","box":"adventures","type":"Action,Traveller","cost":"2","requires":["Peasant Upgrades"]},
+{"id":"Ratcatcher","box":"adventures","type":"Action,Reserve","cost":"2","requires":["Tavern Mat"]},
+{"id":"Raze","box":"adventures","type":"Action","cost":"2"},
+{"id":"Amulet","box":"adventures","type":"Action,Duration","cost":"3"},
+{"id":"Caravan Guard","box":"adventures","type":"Action,Duration,Reaction","cost":"3"},
+{"id":"Dungeon","box":"adventures","type":"Action,Duration","cost":"3"},
+{"id":"Gear","box":"adventures","type":"Action,Duration","cost":"3"},
+{"id":"Guide","box":"adventures","type":"Action,Reserve","cost":"3","requires":["Tavern Mat"]},
+{"id":"Duplicate","box":"adventures","type":"Action,Reserve","cost":"4","requires":["Tavern Mat"]},
+{"id":"Magpie","box":"adventures","type":"Action","cost":"4"},
+{"id":"Messenger","box":"adventures","type":"Action","cost":"4"},
+{"id":"Miser","box":"adventures","type":"Action","cost":"4","requires":["Tavern Mat"]},
+{"id":"Ranger","box":"adventures","type":"Action","cost":"4","requires":["Journey Token"]},
+{"id":"Transmogrify","box":"adventures","type":"Action,Reserve","cost":"4","requires":["Tavern Mat"]},
+{"id":"Artificer","box":"adventures","type":"Action","cost":"5"},
+{"id":"Bridge Troll","box":"adventures","type":"Action,Attack,Duration","cost":"5","requires":["-1 Coin Token"]},
+{"id":"Giant","box":"adventures","type":"Action,Attack","cost":"5","requires":["Journey Token"]},
+{"id":"Haunted Woods","box":"adventures","type":"Action,Attack,Duration","cost":"5"},
+{"id":"Lost City","box":"adventures","type":"Action","cost":"5"},
+{"id":"Relic","box":"adventures","type":"Treasure,Attack","cost":"5","requires":["-1 Card Token"]},
+{"id":"Royal Carriage","box":"adventures","type":"Action,Reserve","cost":"5","requires":["Tavern Mat"]},
+{"id":"Storyteller","box":"adventures","type":"Action","cost":"5"},
+{"id":"Swamp Hag","box":"adventures","type":"Action,Attack,Duration","cost":"5"},
+{"id":"Treasure Trove","box":"adventures","type":"Treasure","cost":"5"},
+{"id":"Wine Merchant","box":"adventures","type":"Action,Reserve","cost":"5","requires":["Tavern Mat"]},
+{"id":"Hireling","box":"adventures","type":"Action,Duration","cost":"6"}
 ],
 "boxes":[
 {"id":"base","name":"Base","image":"Dominion.jpg","icon_image":"20px-Dominion_icon.png"},
@@ -228,5 +258,6 @@ allcards_data=
 {"id":"hinterlands","name":"Hinterlands","image":"299px-Hinterlands.jpg","icon_image":"20px-Hinterlands_icon.png"},
 {"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg","icon_image":"17px-Dark_Ages_icon.png"},
 {"id":"guilds","name":"Guilds","image":"Guilds.jpg","icon_image":"17px-Guilds_icon.png"}
+{"id":"adventures","name":"Adventures","image":"Adventures.jpg","icon_image":"17px-Adventures_icon.png"}
 ]
 }
