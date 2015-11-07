@@ -246,7 +246,27 @@ allcards_data=
 {"id":"Swamp Hag","box":"adventures","type":"Action,Attack,Duration","cost":"5"},
 {"id":"Treasure Trove","box":"adventures","type":"Treasure","cost":"5"},
 {"id":"Wine Merchant","box":"adventures","type":"Action,Reserve","cost":"5","requires":["Tavern Mat"]},
-{"id":"Hireling","box":"adventures","type":"Action,Duration","cost":"6"}
+{"id":"Hireling","box":"adventures","type":"Action,Duration","cost":"6"}/*,
+{"id":"Alms","box":"adventures","type":"Event","cost":"0"},
+{"id":"Ball","box":"adventures","type":"Event","cost":"5","requires":["-1 Coin Token"]},
+{"id":"Bonfire","box":"adventures","type":"Event","cost":"3"},
+{"id":"Borrow","box":"adventures","type":"Event","cost":"0","requires":["-1 Card Token"]},
+{"id":"Expedition","box":"adventures","type":"Event","cost":"3"}
+{"id":"Ferry","box":"adventures","type":"Event","cost":"3","requires":["-2 Cost Token"]},
+{"id":"Inheritance","box":"adventures","type":"Event","cost":"7","requires":["Estate Token"]},
+{"id":"Lost Arts","box":"adventures","type":"Event","cost":"6","requires":["+1 Action Token"]},
+{"id":"Mission","box":"adventures","type":"Event","cost":"4"},
+{"id":"Pathfinding","box":"adventures","type":"Event","cost":"8","requires":["+1 Card Token"]},
+{"id":"Pilgrimage","box":"adventures","type":"Event","cost":"4","requires":["Journey Token"]},
+{"id":"Plan","box":"adventures","type":"Event","cost":"3","requires":["Trashing Token"]},
+{"id":"Quest","box":"adventures","type":"Event","cost":"0"},
+{"id":"Raid","box":"adventures","type":"Event","cost":"5","requires":["-1 Card Token"]},
+{"id":"Save","box":"adventures","type":"Event","cost":"1"},
+{"id":"Scouting Party","box":"adventures","type":"Event","cost":"2"},
+{"id":"Seaway","box":"adventures","type":"Event","cost":"5","requires":["+1 Buy Token"]},
+{"id":"Trade","box":"adventures","type":"Event","cost":"5"},
+{"id":"Training","box":"adventures","type":"Event","cost":"6","requires":["+1 Coin Token"]},
+{"id":"Travelling Fair","box":"adventures","type":"Event","cost":"2"}*/
 ],
 "boxes":[
 {"id":"base","name":"Base","image":"Dominion.jpg","icon_image":"20px-Dominion_icon.png"},
