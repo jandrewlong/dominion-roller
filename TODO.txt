@@ -14,5 +14,3 @@ Implement a Black Market helper
 Implement the Alchemy/Potion constraint as a separate algorithm
 
 Implement Event cards from Adventures - cards are currently commented out in allcards.js
-
-Add small image for Adventures cards
