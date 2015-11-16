@@ -221,7 +221,7 @@ allcards_data=
 {"id":"Port","box":"adventures","type":"Action","cost":"4"},
 {"id":"Coin of the Realm","box":"adventures","type":"Treasure,Reserve","cost":"2","requires":["Tavern Mat"]},
 {"id":"Page","box":"adventures","type":"Action,Traveller","cost":"2","requires":["Page Upgrades"]},
-{"id":"Peasant","box":"adventures","type":"Action,Traveller","cost":"2","requires":["Peasant Upgrades"]},
+{"id":"Peasant","box":"adventures","type":"Action,Traveller","cost":"2","requires":["Peasant Upgrades","+1 Card Token","+1 Action Token","+1 Buy Token","+1 Coin Token"]},
 {"id":"Ratcatcher","box":"adventures","type":"Action,Reserve","cost":"2","requires":["Tavern Mat"]},
 {"id":"Raze","box":"adventures","type":"Action","cost":"2"},
 {"id":"Amulet","box":"adventures","type":"Action,Duration","cost":"3"},
