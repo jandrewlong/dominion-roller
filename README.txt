@@ -1,13 +1,35 @@
-dominion-roller
+===============
+Dominion Roller
 ===============
 
-Generates a random list of kingdom cards (and other supply cards) for a game of dominion.
+Dominion Roller is an HTML5 mobile application that generates a random list of
+kingdom cards (and other supply cards) for a game of Dominion. It is designed
+to be hosted on the Google App Engine public cloud.
+
+You'll need the following:
+ * JDK1.7 or better
+ * Apache Ant (ant.apache.org)
+ * Google App Engine SDK for Java
 
 
 Installation
 ============
 
-Copy all the files to any website that supports PHP.
-Create a subdirectory named data.
-Change the permissions on the 'data' subdirectory so that the webserver
-can write files to it.
+Git clone the source code onto your development workstation, then
+create a 'extlib' subdirectory, and copy into it these jar files:
+ * jackson-core-2.1.x.jar (wiki.fasterxml.com/JacksonHome)
+ * servlet-api.jar (from Google App Engine SDK)
+ * appengine-api.jar (from Google App Engine SDK)
+
+Now run `ant deploy-appengine'.
+
+If successful, this will create a subdirectory named deploy.appengine,
+which you can use for testing the application or to deploy it directly
+to the cloud.
+
+To test the application, run this command from the Google App Engine
+SDK's bin directory:
+
+ ./dev_appserver.sh /path/to/dominion/deploy.appengine
+
+Then connect to your test application at http://localhost:8080/.

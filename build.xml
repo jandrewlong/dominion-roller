@@ -60,6 +60,11 @@
 	/>
 </target>
 
+<target name="deploy-appengine" depends="build">
+<unzip src="${warfile}" dest="deploy.appengine"/>
+<copy file="appengine-web.xml" todir="deploy.appengine/WEB-INF"/>
+</target>
+
 <target name="clean">
 <delete dir="build" />
 <delete file="${warfile}" />
