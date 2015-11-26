@@ -210,10 +210,11 @@ function make_cardset(cardlist)
 	var cardset = {};
 	var kingdom_cards = [];
 	var kingdom_card_info = {};
+	var event_cards = [];
 	var num_prosperity = 0;
 	var num_darkages = 0;
-	var needs_bane = false;
-	for (var i = 0; i < 10; i++) {
+	var needs_bane = false;  // Cornucopia's Young Witch card
+	for (var i = 0; i < cardlist.length && kingdom_cards.length < 10; i++) {
 		var c = cardlist[i];
 		if (c.box_id == 'prosperity') {
 			num_prosperity++;
@@ -224,8 +225,15 @@ function make_cardset(cardlist)
 		if (c.id == 'Young Witch') {
 			needs_bane = true;
 		}
-		kingdom_cards.push(c.id);
-		kingdom_card_info[c.id] = c;
+		if (c.event) {
+			if (event_cards.length < 2) {
+				event_cards.push(c.id);
+			}
+		}
+		else {
+			kingdom_cards.push(c.id);
+			kingdom_card_info[c.id] = c;
+		}
 	}
 
 	function can_be_bane_pile(c) {
@@ -273,6 +281,9 @@ function make_cardset(cardlist)
 	if (num_darkages) {
 		cardset.use_shelters = (Math.random() < num_darkages/10);
 	}
+	if (event_cards.length) {
+		cardset.events = event_cards;
+	}
 
 	return cardset;
 }
@@ -291,15 +302,14 @@ function make_support_list(cardset)
 		support_cards["Shelters"] = true;
 	}
 
-	for (var i = 0; i < cardset.kingdom.length; i++) {
-		var cardname = cardset.kingdom[i];
+	var add_requirements_fn = function(cardname) {
 		var c = get_card_info(cardname);
 
-		if (c.cost.substr(-1) == 'P') {
+		if (c.cost && c.cost.substr(-1) == 'P') {
 			support_cards["Potion"] = true;
 		}
 
-		if (c.type.match(/Looter/)) {
+		if (c.type && c.type.match(/Looter/)) {
 			support_cards["Ruins"] = true;
 		}
 
@@ -308,6 +318,17 @@ function make_support_list(cardset)
 				support_cards[c.requires[j]]=true;
 			}
 		}
+	};
+
+	if (cardset.events) {
+		for (var i = 0; i < cardset.events.length; i++) {
+			support_cards[cardset.events[i]] = true;
+			add_requirements_fn(cardset.events[i]);
+		}
+	}
+
+	for (var i = 0; i < cardset.kingdom.length; i++) {
+		add_requirements_fn(cardset.kingdom[i]);
 	}
 
 	var as_list = [];
