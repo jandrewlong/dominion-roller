@@ -290,7 +290,7 @@ allcards_data=
 {"id":"cornucopia","name":"Cornucopia","image":"Cornucopia.jpg","icon_image":"19px-Cornucopia_icon.png"},
 {"id":"hinterlands","name":"Hinterlands","image":"299px-Hinterlands.jpg","icon_image":"20px-Hinterlands_icon.png"},
 {"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg","icon_image":"17px-Dark_Ages_icon.png"},
-{"id":"guilds","name":"Guilds","image":"Guilds.jpg","icon_image":"17px-Guilds_icon.png"}
+{"id":"guilds","name":"Guilds","image":"Guilds.jpg","icon_image":"17px-Guilds_icon.png"},
 {"id":"adventures","name":"Adventures","image":"Adventures.jpg","icon_image":"20px-adventures_icon.png"}
 ]
 }
