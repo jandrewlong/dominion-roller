@@ -439,6 +439,7 @@ function show_cardset(cardset)
 	$('.set_number', $page).text(cardset.shortname);
 
 	$('.kingdom_cards_list', $page).empty();
+	$('.event_cards_list', $page).empty();
 	$('.support_cards_list', $page).empty();
 
 	var cards = arrange_cards(add_card_info(cardset.kingdom));
@@ -448,6 +449,17 @@ function show_cardset(cardset)
 			$('.xtra',$tmp).append(' <span class="bane_flag"> &mdash; Young Witch\'s Bane</span>');
 		}
 		$('.kingdom_cards_list',$page).append($tmp);
+	}
+
+	if (cardset.events) {
+		var events = arrange_cards(add_card_info(cardset.events));
+		for (var i = 0; i < events.length; i++) {
+			$('.event_cards_list',$page).append(make_card_listitem(events[i]));
+		}
+		$('.event_cards_container',$page).show();
+	}
+	else {
+		$('.event_cards_container',$page).hide();
 	}
 
 	var support_list = make_support_list(cardset);

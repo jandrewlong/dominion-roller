@@ -322,7 +322,6 @@ function make_support_list(cardset)
 
 	if (cardset.events) {
 		for (var i = 0; i < cardset.events.length; i++) {
-			support_cards[cardset.events[i]] = true;
 			add_requirements_fn(cardset.events[i]);
 		}
 	}
