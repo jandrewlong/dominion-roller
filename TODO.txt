@@ -12,3 +12,5 @@ Implement a Black Market helper
   potential kingdom card not actually in play)
 
 Implement the Alchemy/Potion constraint as a separate algorithm
+
+Implement Event cards from Adventures - cards are currently commented out in allcards.js
