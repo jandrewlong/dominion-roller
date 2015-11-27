@@ -65,6 +65,13 @@
 <copy file="appengine-web.xml" todir="deploy.appengine/WEB-INF"/>
 </target>
 
+<target name="deploy-appengine-dev" depends="deploy-appengine">
+<replace file="deploy.appengine/index.html">
+  <replacetoken> manifest="roller.manifest"</replacetoken>
+  <replacevalue></replacevalue>
+</replace>
+</target>
+
 <target name="clean">
 <delete dir="build" />
 <delete file="${warfile}" />
