@@ -116,6 +116,31 @@ function make_cardlist_default(candidates)
 	return candidates;
 }
 
+function make_cardlist_feature1(candidates)
+{
+	var feature_box = candidates[0].box_id;
+	var featured = [];
+	var others = [];
+	for (var i = 0; i < candidates.length; i++) {
+		var c = candidates[i];
+		if (c.box_id == feature_box) {
+			featured.push(c);
+		} else {
+			others.push(c);
+		}
+	}
+	var cards = [];
+	for (var i = 0; i < candidates.length; i++) {
+		if (i < featured.length) {
+			cards.push(featured[i]);
+		}
+		if (i < others.length) {
+			cards.push(others[i]);
+		}
+	}
+	return cards;
+}
+
 function make_cardlist_pickN(candidates, n)
 {
 	var found_count = 0;
@@ -192,6 +217,9 @@ function make_cardlist(algo, candidates)
 	else if (algo == 'pick_1_3') {
 		var n = Math.floor(Math.random()*3)+1;
 		return make_cardlist_pickN(candidates, n);
+	}
+	else if (algo == 'feature_1') {
+		return make_cardlist_feature1(candidates);
 	}
 	else {
 		return make_cardlist_default(candidates);
