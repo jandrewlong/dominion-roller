@@ -237,7 +237,9 @@ function make_cardset(cardlist)
 	}
 
 	function can_be_bane_pile(c) {
-		return c.id != 'Young Witch' && (c.cost == '2' || c.cost == '3');
+		return c.id != 'Young Witch' &&
+			(c.cost == '2' || c.cost == '3') &&
+			!c.event;
 	}
 
 	if (needs_bane) {
