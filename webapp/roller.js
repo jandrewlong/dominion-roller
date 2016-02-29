@@ -139,6 +139,7 @@ function init_global_data()
 			all_cards[i].box_id = box_id;
 			all_cards[i].box = proper_box_info[box_id];
 			all_cards[i].name = (all_cards[i].name || all_cards[i].id);
+			all_cards[i].type_id = type_id;
 		}
 
 		maybe_global_data_ready();
