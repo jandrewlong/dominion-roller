@@ -15,6 +15,7 @@ function shuffle_cards_with_weights(cards, weights)
 	var get_weight = function(card) {
 		return +(weights[card.id] ||
 			weights['box:' + card.box_id] ||
+			weights['type:' + card.type_id] ||
 			weights['*'] ||
 			1.0);
 	};
