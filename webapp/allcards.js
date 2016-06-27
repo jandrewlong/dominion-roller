@@ -279,7 +279,33 @@ allcards_data=
 {"id":"Seaway","box":"adventures","event":true,"cost":"5","requires":["+1 Buy Token"]},
 {"id":"Trade","box":"adventures","event":true,"cost":"5"},
 {"id":"Training","box":"adventures","event":true,"cost":"6","requires":["+1 Coin Token"]},
-{"id":"Travelling Fair","box":"adventures","event":true,"cost":"2"}
+{"id":"Travelling Fair","box":"adventures","event":true,"cost":"2"},
+//  {"id":"Victory Point Tokens","box":"empires":"special":true},
+{"id":"Debt Token","box":"empires","special":true},
+{"id":"Archive","box":"empires","type":"Action,Duration","cost":"5"},
+{"id":"Capital","box":"empires","type":"Treasure","cost":"5","requires":["Debt Tokens"]},
+{"id":"Chariot Race","box":"empires","type":"Action","cost":"3","requires":["Victory Point Tokens"]},
+{"id":"Charm","box":"empires","type":"Treasure","cost":"5"},
+{"id":"City Quarter","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
+{"id":"Crown","box":"empires","type":"Action,Treasure","cost":"5"},
+{"id":"Enchantress","box":"empires","type":"Action,Attack,Duration","cost":"3"},
+{"id":"Engineer","box":"empires","type":"Action","cost":"0d4","requires":["Debt Tokens"]},// cost 0 coins, 4 debt
+{"id":"Farmers' Market","box":"empires","type":"Action,Gathering","cost":"3","requires":["Victory Point Tokens"]},
+{"id":"Forum","box":"empires","type":"Action","cost":"5"},
+{"id":"Groundskeeper","box":"empires","type":"Action","cost":"5","requires":["Victory Point Tokens"]},
+{"id":"Legionary","box":"empires","type":"Action,Attack","cost":"5"},
+{"id":"Royal Blacksmith","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
+{"id":"Overlord","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
+{"id":"Sacrifice","box":"empires","type":"Action","cost":"4","requires":["Victory Point Tokens"]},
+{"id":"Temple","box":"empires","type":"Action,Gathering","cost":"4","requires":["Victory Point Tokens"]},
+{"id":"Villa","box":"empires","type":"Action","cost":"4"},
+{"id":"Wild Hunt","box":"empires","type":"Action,Gathering","cost":"5","requires":["Victory Point Tokens"]},
+{"id":"Encampment/Plunder","box":"empires","type":"Action","cost":"2","requires":["Victory Point Tokens"]},// Plunder costs 5, type treasure
+{"id":"Patrician/Emporium","box":"empires","type":"Action","cost":"2","requires":[""]},// Emporium costs 5
+{"id":"Settlers/Bustling Village","box":"empires","type":"Action","cost":"2"},// Bustling Village costs 5
+{"id":"Castles","box":"empires","type":"Victory,Castle","cost":"3","requires":[""]},// costs range from 3-10, types include: Treasure,Action
+{"id":"Catapult/Rocks","box":"empires","type":"Action,Attack","cost":"3"},// Rocks costs 4, is a treasure
+{"id":"Gladiator/Fortune","box":"empires","type":"Action","cost":"3"}//,// Fortune costs 8 coins, 8 debt, type treasure
 ],
 "boxes":[
 {"id":"base","name":"Base","image":"Dominion.jpg","icon_image":"20px-Dominion_icon.png"},
@@ -291,6 +317,7 @@ allcards_data=
 {"id":"hinterlands","name":"Hinterlands","image":"299px-Hinterlands.jpg","icon_image":"20px-Hinterlands_icon.png"},
 {"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg","icon_image":"17px-Dark_Ages_icon.png"},
 {"id":"guilds","name":"Guilds","image":"Guilds.jpg","icon_image":"17px-Guilds_icon.png"},
-{"id":"adventures","name":"Adventures","image":"Adventures.jpg","icon_image":"20px-adventures_icon.png"}
+{"id":"adventures","name":"Adventures","image":"Adventures.jpg","icon_image":"20px-adventures_icon.png"},
+{"id":"empires","name":"Empires","image":"Empires.jpg","icon_image":"20px-Empires_icon.jpg"}
 ]
 }
