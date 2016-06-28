@@ -301,11 +301,24 @@ allcards_data=
 {"id":"Villa","box":"empires","type":"Action","cost":"4"},
 {"id":"Wild Hunt","box":"empires","type":"Action,Gathering","cost":"5","requires":["Victory Point Tokens"]},
 {"id":"Encampment/Plunder","box":"empires","type":"Action","cost":"2","requires":["Victory Point Tokens"]},// Plunder costs 5, type treasure
-{"id":"Patrician/Emporium","box":"empires","type":"Action","cost":"2","requires":[""]},// Emporium costs 5
+{"id":"Patrician/Emporium","box":"empires","type":"Action","cost":"2"},// Emporium costs 5
 {"id":"Settlers/Bustling Village","box":"empires","type":"Action","cost":"2"},// Bustling Village costs 5
-{"id":"Castles","box":"empires","type":"Victory,Castle","cost":"3","requires":[""]},// costs range from 3-10, types include: Treasure,Action
+{"id":"Castles","box":"empires","type":"Victory,Castle","cost":"3"},// costs range from 3-10, types include: Treasure,Action
 {"id":"Catapult/Rocks","box":"empires","type":"Action,Attack","cost":"3"},// Rocks costs 4, is a treasure
-{"id":"Gladiator/Fortune","box":"empires","type":"Action","cost":"3"}//,// Fortune costs 8 coins, 8 debt, type treasure
+{"id":"Gladiator/Fortune","box":"empires","type":"Action","cost":"3"},// Fortune costs 8 coins, 8 debt, type treasure
+{"id":"Advance","box":"empires","event":true,"cost":"0"},
+{"id":"Annex","box":"empires","event":true,"cost":"0d8","requires":["Debt Tokens"]},// costs 0 coins, 8 debt
+{"id":"Banquet","box":"empires","event":true,"cost":"3"},
+{"id":"Conquest","box":"empires","event":true,"cost":"6","requires":["Victory Point Tokens"]},
+{"id":"Delve","box":"empires","event":true,"cost":"2"},
+{"id":"Dominate","box":"empires","event":true,"cost":"14","requires":["Victory Point Tokens"]},
+{"id":"Donate","box":"empires","event":true,"cost":"0d8","requires":["Debt Tokens"]},// costs 0 coins, 8 debt
+{"id":"Ritual","box":"empires","event":true,"cost":"4","requires":["Victory Point Tokens"]},
+{"id":"Salt the Earth","box":"empires","event":true,"cost":"4","requires":["Victory Point Tokens"]},
+{"id":"Tax","box":"empires","event":true,"cost":"2","requires":["Debt Tokens"]},
+{"id":"Triumph","box":"empires","event":true,"cost":"0d5","requires":["Debt Tokens","Victory Point Tokens"]},// costs 0 coins, 5 debt
+{"id":"Wedding","box":"empires","event":true,"cost":"4d3","requires":["Debt Tokens","Victory Point Tokens"]},// costs 4 coins, 3 debt
+{"id":"Windfall","box":"empires","event":true,"cost":"5"}//,
 ],
 "boxes":[
 {"id":"base","name":"Base","image":"Dominion.jpg","icon_image":"20px-Dominion_icon.png"},
