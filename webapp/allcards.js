@@ -281,26 +281,26 @@ allcards_data=
 {"id":"Training","box":"adventures","event":true,"cost":"6","requires":["+1 Coin Token"]},
 {"id":"Travelling Fair","box":"adventures","event":true,"cost":"2"},
 //  {"id":"Victory Point Tokens","box":"empires":"special":true},
-{"id":"Debt Token","box":"empires","special":true},
+{"id":"Debt Tokens","box":"empires","special":true},
 {"id":"Archive","box":"empires","type":"Action,Duration","cost":"5"},
 {"id":"Capital","box":"empires","type":"Treasure","cost":"5","requires":["Debt Tokens"]},
-{"id":"Chariot Race","box":"empires","type":"Action","cost":"3","requires":["Victory Point Tokens"]},
+{"id":"Chariot Race","box":"empires","type":"Action","cost":"3","requires":["Victory Point tokens"]},
 {"id":"Charm","box":"empires","type":"Treasure","cost":"5"},
 {"id":"City Quarter","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
 {"id":"Crown","box":"empires","type":"Action,Treasure","cost":"5"},
 {"id":"Enchantress","box":"empires","type":"Action,Attack,Duration","cost":"3"},
 {"id":"Engineer","box":"empires","type":"Action","cost":"0d4","requires":["Debt Tokens"]},// cost 0 coins, 4 debt
-{"id":"Farmers' Market","box":"empires","type":"Action,Gathering","cost":"3","requires":["Victory Point Tokens"]},
+{"id":"Farmers' Market","box":"empires","type":"Action,Gathering","cost":"3","requires":["Victory Point tokens"]},
 {"id":"Forum","box":"empires","type":"Action","cost":"5"},
-{"id":"Groundskeeper","box":"empires","type":"Action","cost":"5","requires":["Victory Point Tokens"]},
+{"id":"Groundskeeper","box":"empires","type":"Action","cost":"5","requires":["Victory Point tokens"]},
 {"id":"Legionary","box":"empires","type":"Action,Attack","cost":"5"},
 {"id":"Royal Blacksmith","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
 {"id":"Overlord","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
-{"id":"Sacrifice","box":"empires","type":"Action","cost":"4","requires":["Victory Point Tokens"]},
-{"id":"Temple","box":"empires","type":"Action,Gathering","cost":"4","requires":["Victory Point Tokens"]},
+{"id":"Sacrifice","box":"empires","type":"Action","cost":"4","requires":["Victory Point tokens"]},
+{"id":"Temple","box":"empires","type":"Action,Gathering","cost":"4","requires":["Victory Point tokens"]},
 {"id":"Villa","box":"empires","type":"Action","cost":"4"},
-{"id":"Wild Hunt","box":"empires","type":"Action,Gathering","cost":"5","requires":["Victory Point Tokens"]},
-{"id":"Encampment/Plunder","box":"empires","type":"Action","cost":"2","requires":["Victory Point Tokens"]},// Plunder costs 5, type treasure
+{"id":"Wild Hunt","box":"empires","type":"Action,Gathering","cost":"5","requires":["Victory Point tokens"]},
+{"id":"Encampment/Plunder","box":"empires","type":"Action","cost":"2","requires":["Victory Point tokens"]},// Plunder costs 5, type treasure
 {"id":"Patrician/Emporium","box":"empires","type":"Action","cost":"2"},// Emporium costs 5
 {"id":"Settlers/Bustling Village","box":"empires","type":"Action","cost":"2"},// Bustling Village costs 5
 {"id":"Castles","box":"empires","type":"Victory,Castle","cost":"3"},// costs range from 3-10, types include: Treasure,Action
@@ -309,38 +309,37 @@ allcards_data=
 {"id":"Advance","box":"empires","event":true,"cost":"0"},
 {"id":"Annex","box":"empires","event":true,"cost":"0d8","requires":["Debt Tokens"]},// costs 0 coins, 8 debt
 {"id":"Banquet","box":"empires","event":true,"cost":"3"},
-{"id":"Conquest","box":"empires","event":true,"cost":"6","requires":["Victory Point Tokens"]},
+{"id":"Conquest","box":"empires","event":true,"cost":"6","requires":["Victory Point tokens"]},
 {"id":"Delve","box":"empires","event":true,"cost":"2"},
-{"id":"Dominate","box":"empires","event":true,"cost":"14","requires":["Victory Point Tokens"]},
+{"id":"Dominate","box":"empires","event":true,"cost":"14","requires":["Victory Point tokens"]},
 {"id":"Donate","box":"empires","event":true,"cost":"0d8","requires":["Debt Tokens"]},// costs 0 coins, 8 debt
-{"id":"Ritual","box":"empires","event":true,"cost":"4","requires":["Victory Point Tokens"]},
-{"id":"Salt the Earth","box":"empires","event":true,"cost":"4","requires":["Victory Point Tokens"]},
+{"id":"Ritual","box":"empires","event":true,"cost":"4","requires":["Victory Point tokens"]},
+{"id":"Salt the Earth","box":"empires","event":true,"cost":"4","requires":["Victory Point tokens"]},
 {"id":"Tax","box":"empires","event":true,"cost":"2","requires":["Debt Tokens"]},
-{"id":"Triumph","box":"empires","event":true,"cost":"0d5","requires":["Debt Tokens","Victory Point Tokens"]},// costs 0 coins, 5 debt
-{"id":"Wedding","box":"empires","event":true,"cost":"4d3","requires":["Debt Tokens","Victory Point Tokens"]},// costs 4 coins, 3 debt
-{"id":"Windfall","box":"empires","event":true,"cost":"5"}/*,
-{"id":"Aqueduct","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Arena","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Bandit Fort","box":"empires","landmark":true},
-{"id":"Basilica","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Baths","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Battlefield","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Colonnade","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Defiled Shrine","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Fountain","box":"empires","landmark":true},
-{"id":"Keep","box":"empires","landmark":true},
-{"id":"Labyrinth","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Mountain Pass","box":"empires","landmark":true,"requires":["Debt Tokens","Victory Point Tokens"]},
-{"id":"Museum","box":"empires","landmark":true},
-{"id":"Obelisk","box":"empires","landmark":true},
-{"id":"Orchard","box":"empires","landmark":true},
-{"id":"Palace","box":"empires","landmark":true},
-{"id":"Tomb","box":"empires","landmark":true,"requires":["Victory Point Tokens"]},
-{"id":"Tower","box":"empires","landmark":true},
-{"id":"Triumphal Arch","box":"empires","landmark":true},
-{"id":"Wall","box":"empires","landmark":true},
-{"id":"Wolf Den","box":"empires","landmark":true}//,
-*/
+{"id":"Triumph","box":"empires","event":true,"cost":"0d5","requires":["Debt Tokens","Victory Point tokens"]},// costs 0 coins, 5 debt
+{"id":"Wedding","box":"empires","event":true,"cost":"4d3","requires":["Debt Tokens","Victory Point tokens"]},// costs 4 coins, 3 debt
+{"id":"Windfall","box":"empires","event":true,"cost":"5"},
+{"id":"Aqueduct","box":"empires","type":"Landmark","event":true,"requires":["Victory Point tokens"]},
+{"id":"Arena","box":"empires","type":"Landmark","event":true,"requires":["Victory Point tokens"]},
+{"id":"Bandit Fort","box":"empires","type":"Landmark","event":true},
+{"id":"Basilica","box":"empires","type":"Landmark","event":true,"requires":["Victory Point tokens"]},
+{"id":"Baths","box":"empires","type":"Landmark","event":true,"requires":["Victory Point tokens"]},
+{"id":"Battlefield","box":"empires","type":"Landmark","event":true,"requires":["Victory Point tokens"]},
+{"id":"Colonnade","box":"empires","type":"Landmark","event":true,"requires":["Victory Point tokens"]},
+{"id":"Defiled Shrine","box":"type":"Landmark","empires","event":true,"requires":["Victory Point tokens"]},
+{"id":"Fountain","box":"empires","type":"Landmark","event":true},
+{"id":"Keep","box":"empires","type":"Landmark","event":true},
+{"id":"Labyrinth","box":"empires","type":"Landmark","event":true,"requires":["Victory Point tokens"]},
+{"id":"Mountain Pass","box":"empires","type":"Landmark","event":true,"requires":["Debt Tokens","Victory Point tokens"]},
+{"id":"Museum","box":"empires","type":"Landmark","event":true},
+{"id":"Obelisk","box":"empires","type":"Landmark","event":true},
+{"id":"Orchard","box":"empires","type":"Landmark","event":true},
+{"id":"Palace","box":"empires","type":"Landmark","event":true},
+{"id":"Tomb","box":"empires","type":"Landmark","event":true,"requires":["Victory Point tokens"]},
+{"id":"Tower","box":"empires","type":"Landmark","event":true},
+{"id":"Triumphal Arch","box":"empires","type":"Landmark","event":true},
+{"id":"Wall","box":"empires","type":"Landmark","event":true},
+{"id":"Wolf Den","box":"empires","type":"Landmark","event":true}//,
 ],
 "boxes":[
 {"id":"base","name":"Base","image":"Dominion.jpg","icon_image":"20px-Dominion_icon.png"},
@@ -353,6 +352,6 @@ allcards_data=
 {"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg","icon_image":"17px-Dark_Ages_icon.png"},
 {"id":"guilds","name":"Guilds","image":"Guilds.jpg","icon_image":"17px-Guilds_icon.png"},
 {"id":"adventures","name":"Adventures","image":"Adventures.jpg","icon_image":"20px-adventures_icon.png"},
-{"id":"empires","name":"Empires","image":"Empires.jpg","icon_image":"20px-Empires_icon.jpg"}
+{"id":"empires","name":"Empires","image":"Empires.jpg","icon_image":"20px-Empires_icon.png"}
 ]
 }
