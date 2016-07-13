@@ -300,12 +300,12 @@ allcards_data=
 {"id":"Temple","box":"empires","type":"Action,Gathering","cost":"4","requires":["VP tokens"]},
 {"id":"Villa","box":"empires","type":"Action","cost":"4"},
 {"id":"Wild Hunt","box":"empires","type":"Action,Gathering","cost":"5","requires":["VP tokens"]},
-{"id":"Encampment/Plunder","box":"empires","type":"Action","cost":"2","requires":["VP tokens"]},// Plunder costs 5, type treasure
-{"id":"Patrician/Emporium","box":"empires","type":"Action","cost":"2"},// Emporium costs 5
+{"id":"Encampment/Plunder","box":"empires","type":"Action","cost":"2","requires":["VP tokens"]},// Plunder costs 5, type treasure, uses VP tokens
+{"id":"Patrician/Emporium","box":"empires","type":"Action","cost":"2","requires":["VP tokens"]},// Emporium costs 5, uses VP tokens
 {"id":"Settlers/Bustling Village","box":"empires","type":"Action","cost":"2"},// Bustling Village costs 5
-{"id":"Castles","box":"empires","type":"Victory,Castle","cost":"3"},// costs range from 3-10, types include: Treasure,Action
+{"id":"Castles","box":"empires","type":"Victory,Castle","cost":"3","requires":["VP tokens"]},// costs range from 3-10, types include: Treasure,Action
 {"id":"Catapult/Rocks","box":"empires","type":"Action,Attack","cost":"3"},// Rocks costs 4, is a treasure
-{"id":"Gladiator/Fortune","box":"empires","type":"Action","cost":"3"},// Fortune costs 8 coins, 8 debt, type treasure
+{"id":"Gladiator/Fortune","box":"empires","type":"Action","cost":"3","requires":["Debt Tokens"]},// Fortune costs 8 coins, 8 debt, type treasure
 {"id":"Advance","box":"empires","event":true,"cost":"0"},
 {"id":"Annex","box":"empires","event":true,"cost":"0d8","requires":["Debt Tokens"]},// costs 0 coins, 8 debt
 {"id":"Banquet","box":"empires","event":true,"cost":"3"},
