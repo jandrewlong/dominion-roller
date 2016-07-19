@@ -448,6 +448,9 @@ function show_cardset(cardset)
 		if (cards[i].id == cardset.bane_pile) {
 			$('.xtra',$tmp).append(' <span class="bane_flag"> &mdash; Young Witch\'s Bane</span>');
 		}
+		if (cards[i].id == cardset.obelisk_pile) {
+			$('.xtra',$tmp).append(' <span class="bane_flag"> &mdash; Obelisk Pile</span>');
+		}
 		$('.kingdom_cards_list',$page).append($tmp);
 	}
 

@@ -221,7 +221,7 @@ allcards_data=
 {"id":"Port","box":"adventures","type":"Action","cost":"4"},
 {"id":"Coin of the Realm","box":"adventures","type":"Treasure,Reserve","cost":"2","requires":["Tavern Mat"]},
 {"id":"Page","box":"adventures","type":"Action,Traveller","cost":"2","requires":["Page Upgrades"]},
-{"id":"Peasant","box":"adventures","type":"Action,Traveller","cost":"2","requires":["Peasant Upgrades","+1 Card Token","+1 Action Token","+1 Buy Token","+1 Coin Token"]},
+{"id":"Peasant","box":"adventures","type":"Action,Traveller","cost":"2","requires":["Peasant Upgrades","+1 Card Token","+1 Action Token","+1 Buy Token","+1 Coin Token","Tavern Mat"]},
 {"id":"Ratcatcher","box":"adventures","type":"Action,Reserve","cost":"2","requires":["Tavern Mat"]},
 {"id":"Raze","box":"adventures","type":"Action","cost":"2"},
 {"id":"Amulet","box":"adventures","type":"Action,Duration","cost":"3"},
@@ -279,7 +279,67 @@ allcards_data=
 {"id":"Seaway","box":"adventures","event":true,"cost":"5","requires":["+1 Buy Token"]},
 {"id":"Trade","box":"adventures","event":true,"cost":"5"},
 {"id":"Training","box":"adventures","event":true,"cost":"6","requires":["+1 Coin Token"]},
-{"id":"Travelling Fair","box":"adventures","event":true,"cost":"2"}
+{"id":"Travelling Fair","box":"adventures","event":true,"cost":"2"},
+{"id":"VP tokens","name":"Victory Point Tokens","box":"empires":"special":true},
+{"id":"Debt Tokens","box":"empires","special":true},
+{"id":"Archive","box":"empires","type":"Action,Duration","cost":"5"},
+{"id":"Capital","box":"empires","type":"Treasure","cost":"5","requires":["Debt Tokens"]},
+{"id":"Chariot Race","box":"empires","type":"Action","cost":"3","requires":["VP tokens"]},
+{"id":"Charm","box":"empires","type":"Treasure","cost":"5"},
+{"id":"City Quarter","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
+{"id":"Crown","box":"empires","type":"Action,Treasure","cost":"5"},
+{"id":"Enchantress","box":"empires","type":"Action,Attack,Duration","cost":"3"},
+{"id":"Engineer","box":"empires","type":"Action","cost":"0d4","requires":["Debt Tokens"]},// cost 0 coins, 4 debt
+{"id":"Farmers' Market","box":"empires","type":"Action,Gathering","cost":"3","requires":["VP tokens"]},
+{"id":"Forum","box":"empires","type":"Action","cost":"5"},
+{"id":"Groundskeeper","box":"empires","type":"Action","cost":"5","requires":["VP tokens"]},
+{"id":"Legionary","box":"empires","type":"Action,Attack","cost":"5"},
+{"id":"Royal Blacksmith","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
+{"id":"Overlord","box":"empires","type":"Action","cost":"0d8","requires":["Debt Tokens"]},// cost 0 coins, 8 debt
+{"id":"Sacrifice","box":"empires","type":"Action","cost":"4","requires":["VP tokens"]},
+{"id":"Temple","box":"empires","type":"Action,Gathering","cost":"4","requires":["VP tokens"]},
+{"id":"Villa","box":"empires","type":"Action","cost":"4"},
+{"id":"Wild Hunt","box":"empires","type":"Action,Gathering","cost":"5","requires":["VP tokens"]},
+{"id":"Encampment/Plunder","box":"empires","type":"Action","cost":"2","requires":["VP tokens"]},// Plunder costs 5, type treasure, uses VP tokens
+{"id":"Patrician/Emporium","box":"empires","type":"Action","cost":"2","requires":["VP tokens"]},// Emporium costs 5, uses VP tokens
+{"id":"Settlers/Bustling Village","box":"empires","type":"Action","cost":"2"},// Bustling Village costs 5
+{"id":"Castles","box":"empires","type":"Victory,Castle","cost":"3","requires":["VP tokens"]},// costs range from 3-10, types include: Treasure,Action
+{"id":"Catapult/Rocks","box":"empires","type":"Action,Attack","cost":"3"},// Rocks costs 4, is a treasure
+{"id":"Gladiator/Fortune","box":"empires","type":"Action","cost":"3","requires":["Debt Tokens"]},// Fortune costs 8 coins, 8 debt, type treasure
+{"id":"Advance","box":"empires","event":true,"cost":"0"},
+{"id":"Annex","box":"empires","event":true,"cost":"0d8","requires":["Debt Tokens"]},// costs 0 coins, 8 debt
+{"id":"Banquet","box":"empires","event":true,"cost":"3"},
+{"id":"Conquest","box":"empires","event":true,"cost":"6","requires":["VP tokens"]},
+{"id":"Delve","box":"empires","event":true,"cost":"2"},
+{"id":"Dominate","box":"empires","event":true,"cost":"14","requires":["VP tokens"]},
+{"id":"Donate","box":"empires","event":true,"cost":"0d8","requires":["Debt Tokens"]},// costs 0 coins, 8 debt
+{"id":"Ritual","box":"empires","event":true,"cost":"4","requires":["VP tokens"]},
+{"id":"Salt the Earth","box":"empires","event":true,"cost":"4","requires":["VP tokens"]},
+{"id":"Tax","box":"empires","event":true,"cost":"2","requires":["Debt Tokens"]},
+{"id":"Triumph","box":"empires","event":true,"cost":"0d5","requires":["Debt Tokens","VP tokens"]},// costs 0 coins, 5 debt
+{"id":"Wedding","box":"empires","event":true,"cost":"4d3","requires":["Debt Tokens","VP tokens"]},// costs 4 coins, 3 debt
+{"id":"Windfall","box":"empires","event":true,"cost":"5"},
+{"id":"Aqueduct","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Arena","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Bandit Fort","box":"empires","type":"Landmark","event":true},
+{"id":"Basilica","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Baths","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Battlefield","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Colonnade","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Defiled Shrine","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Fountain","box":"empires","type":"Landmark","event":true},
+{"id":"Keep","box":"empires","type":"Landmark","event":true},
+{"id":"Labyrinth","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Mountain Pass","box":"empires","type":"Landmark","event":true,"requires":["Debt Tokens","VP tokens"]},
+{"id":"Museum","box":"empires","type":"Landmark","event":true},
+{"id":"Obelisk","box":"empires","type":"Landmark","event":true},
+{"id":"Orchard","box":"empires","type":"Landmark","event":true},
+{"id":"Palace","box":"empires","type":"Landmark","event":true},
+{"id":"Tomb","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
+{"id":"Tower","box":"empires","type":"Landmark","event":true},
+{"id":"Triumphal Arch","box":"empires","type":"Landmark","event":true},
+{"id":"Wall","box":"empires","type":"Landmark","event":true},
+{"id":"Wolf Den","box":"empires","type":"Landmark","event":true}//,
 ],
 "boxes":[
 {"id":"base","name":"Base","image":"Dominion.jpg","icon_image":"20px-Dominion_icon.png"},
@@ -291,6 +351,7 @@ allcards_data=
 {"id":"hinterlands","name":"Hinterlands","image":"299px-Hinterlands.jpg","icon_image":"20px-Hinterlands_icon.png"},
 {"id":"darkages","name":"Dark Ages","image":"300px-Dark_Ages.jpg","icon_image":"17px-Dark_Ages_icon.png"},
 {"id":"guilds","name":"Guilds","image":"Guilds.jpg","icon_image":"17px-Guilds_icon.png"},
-{"id":"adventures","name":"Adventures","image":"Adventures.jpg","icon_image":"20px-adventures_icon.png"}
+{"id":"adventures","name":"Adventures","image":"Adventures.jpg","icon_image":"20px-adventures_icon.png"},
+{"id":"empires","name":"Empires","image":"Empires.jpg","icon_image":"20px-Empires_icon.png"}
 ]
 }

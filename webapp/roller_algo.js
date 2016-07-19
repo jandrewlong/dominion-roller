@@ -244,7 +244,10 @@ function make_cardset(cardlist)
 	var event_cards = [];
 	var num_prosperity = 0;
 	var num_darkages = 0;
+	var num_actions = 0;
+	var uses_ruins = false;
 	var needs_bane = false;  // Cornucopia's Young Witch card
+	var has_obelisk = false;  // Obelisk Landmark from Empires
 	for (var i = 0; i < cardlist.length && kingdom_cards.length < 10; i++) {
 		var c = cardlist[i];
 		if (c.box_id == 'prosperity') {
@@ -253,12 +256,21 @@ function make_cardset(cardlist)
 		if (c.box_id == 'darkages') {
 			num_darkages++;
 		}
+		if (c.type && c.type.match(/Action/)) {
+			num_actions++;
+		}
+		if (c.type && c.type.match(/Looter/)) {
+			uses_ruins = true;
+		}
 		if (c.id == 'Young Witch') {
 			needs_bane = true;
 		}
 		if (c.event) {
 			if (event_cards.length < 2) {
 				event_cards.push(c.id);
+				if (c.id == 'Obelisk') {
+					has_obelisk = true;
+				}
 			}
 		}
 		else {
@@ -314,6 +326,34 @@ function make_cardset(cardlist)
 	if (num_darkages) {
 		cardset.use_shelters = (Math.random() < num_darkages/10);
 	}
+
+	if (has_obelisk) {
+		/*  this section still needs work, the function should work without it
+		if (uses_ruins) {
+			num_actions++;
+			// decide if ruins should be the obelisk pile
+			if (Math.random() < 1/num_actions) {
+				cardset.obelisk_pile = // ruins
+			}
+		}
+		 *  the rest of this might need more tweaking
+		 *  to allow young witch's bane to be the obelisk pile
+		*/
+		if (!cardset.obelisk_pile) {
+			// find an action pile to use with the Obelisk
+			for (var i = 0; i < 10; i++) {
+				var c = cardlist[i];
+				if (c.type && c.type.match(/Action/)) {
+					cardset.obelisk_pile = c.id;
+					break;
+				}
+			}
+		}
+		if (!cardset.obelisk_pile) {
+			throw "No Obelisk Pile found";
+		}
+	}
+
 	if (event_cards.length) {
 		cardset.events = event_cards;
 	}
