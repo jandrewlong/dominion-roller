@@ -326,7 +326,7 @@ allcards_data=
 {"id":"Baths","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
 {"id":"Battlefield","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
 {"id":"Colonnade","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
-{"id":"Defiled Shrine","box":"type":"Landmark","empires","event":true,"requires":["VP tokens"]},
+{"id":"Defiled Shrine","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
 {"id":"Fountain","box":"empires","type":"Landmark","event":true},
 {"id":"Keep","box":"empires","type":"Landmark","event":true},
 {"id":"Labyrinth","box":"empires","type":"Landmark","event":true,"requires":["VP tokens"]},
