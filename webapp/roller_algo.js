@@ -329,24 +329,22 @@ function make_cardset(cardlist)
 	}
 
 	if (has_obelisk) {
+		// find an action pile to use with the Obelisk
+		var candidates = kingdom_cards.filter(
+			function(card) {
+				var c = get_card_info(card);
+				return c.type && c.type.match(/Action/);
+			});
 		// decide if ruins should be the obelisk pile
 		if (uses_ruins) {
-			if (Math.random() < 1/(num_actions + 1)) {
-				cardset.obelisk_pile = "Ruins";
-			}
+			candidates.push("Ruins");
 		}
-		if (!cardset.obelisk_pile) {
-			// find an action pile to use with the Obelisk
-			for (var i = 0; i < kingdom_cards.length; i++) {
-				var c = get_card_info(kingdom_cards[i]);
-				if (c.type && c.type.match(/Action/)) {
-					cardset.obelisk_pile = c.id;
-					break;
-				}
-			}
-		}
-		if (!cardset.obelisk_pile) {
-			throw "No Obelisk Pile found";
+
+		if (candidates.length != 0) {
+			var j = Math.floor(Math.random() * candidates.length);
+			cardset.obelisk_pile = candidates[j];
+		} else {
+			throw "No eligible Obelisk Piles in kingdom";
 		}
 	}
 
