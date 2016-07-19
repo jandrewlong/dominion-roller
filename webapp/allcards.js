@@ -280,7 +280,7 @@ allcards_data=
 {"id":"Trade","box":"adventures","event":true,"cost":"5"},
 {"id":"Training","box":"adventures","event":true,"cost":"6","requires":["+1 Coin Token"]},
 {"id":"Travelling Fair","box":"adventures","event":true,"cost":"2"},
-{"id":"VP tokens","name":"Victory Point Tokens","box":"empires":"special":true},
+{"id":"VP tokens","name":"Victory Point Tokens","box":"empires","special":true},
 {"id":"Debt Tokens","box":"empires","special":true},
 {"id":"Archive","box":"empires","type":"Action,Duration","cost":"5"},
 {"id":"Capital","box":"empires","type":"Treasure","cost":"5","requires":["Debt Tokens"]},
