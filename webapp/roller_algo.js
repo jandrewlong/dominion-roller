@@ -278,6 +278,7 @@ function make_cardset(cardlist)
 			kingdom_card_info[c.id] = c;
 		}
 	}
+	var seen = i;
 
 	function can_be_bane_pile(c) {
 		return c.id != 'Young Witch' &&
@@ -287,7 +288,7 @@ function make_cardset(cardlist)
 
 	if (needs_bane) {
 		// look for a qualifying "bane" card from unpicked cards
-		for (var i = 10; i < cardlist.length; i++) {
+		for (var i = seen; i < cardlist.length; i++) {
 			var c = cardlist[i];
 			if (can_be_bane_pile(c)) {
 				kingdom_cards.push(c.id);
