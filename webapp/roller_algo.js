@@ -328,21 +328,16 @@ function make_cardset(cardlist)
 	}
 
 	if (has_obelisk) {
-		/*  this section still needs work, the function should work without it
+		// decide if ruins should be the obelisk pile
 		if (uses_ruins) {
-			num_actions++;
-			// decide if ruins should be the obelisk pile
-			if (Math.random() < 1/num_actions) {
-				cardset.obelisk_pile = // ruins
+			if (Math.random() < 1/(num_actions + 1)) {
+				cardset.obelisk_pile = "Ruins";
 			}
 		}
-		 *  the rest of this might need more tweaking
-		 *  to allow young witch's bane to be the obelisk pile
-		*/
 		if (!cardset.obelisk_pile) {
 			// find an action pile to use with the Obelisk
-			for (var i = 0; i < 10; i++) {
-				var c = cardlist[i];
+			for (var i = 0; i < kingdom_cards.length; i++) {
+				var c = get_card_info(kingdom_cards[i]);
 				if (c.type && c.type.match(/Action/)) {
 					cardset.obelisk_pile = c.id;
 					break;
