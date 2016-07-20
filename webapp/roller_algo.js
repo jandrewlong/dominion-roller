@@ -278,6 +278,7 @@ function make_cardset(cardlist)
 			kingdom_card_info[c.id] = c;
 		}
 	}
+	var seen = i;
 
 	function can_be_bane_pile(c) {
 		return c.id != 'Young Witch' &&
@@ -287,7 +288,7 @@ function make_cardset(cardlist)
 
 	if (needs_bane) {
 		// look for a qualifying "bane" card from unpicked cards
-		for (var i = 10; i < cardlist.length; i++) {
+		for (var i = seen; i < cardlist.length; i++) {
 			var c = cardlist[i];
 			if (can_be_bane_pile(c)) {
 				kingdom_cards.push(c.id);
@@ -328,29 +329,22 @@ function make_cardset(cardlist)
 	}
 
 	if (has_obelisk) {
-		/*  this section still needs work, the function should work without it
+		// find an action pile to use with the Obelisk
+		var candidates = kingdom_cards.filter(
+			function(card) {
+				var c = get_card_info(card);
+				return c.type && c.type.match(/Action/);
+			});
+		// decide if ruins should be the obelisk pile
 		if (uses_ruins) {
-			num_actions++;
-			// decide if ruins should be the obelisk pile
-			if (Math.random() < 1/num_actions) {
-				cardset.obelisk_pile = // ruins
-			}
+			candidates.push("Ruins");
 		}
-		 *  the rest of this might need more tweaking
-		 *  to allow young witch's bane to be the obelisk pile
-		*/
-		if (!cardset.obelisk_pile) {
-			// find an action pile to use with the Obelisk
-			for (var i = 0; i < 10; i++) {
-				var c = cardlist[i];
-				if (c.type && c.type.match(/Action/)) {
-					cardset.obelisk_pile = c.id;
-					break;
-				}
-			}
-		}
-		if (!cardset.obelisk_pile) {
-			throw "No Obelisk Pile found";
+
+		if (candidates.length != 0) {
+			var j = Math.floor(Math.random() * candidates.length);
+			cardset.obelisk_pile = candidates[j];
+		} else {
+			throw "No eligible Obelisk Piles in kingdom";
 		}
 	}
 

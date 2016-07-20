@@ -470,7 +470,11 @@ function show_cardset(cardset)
 	{
 		cards = arrange_cards(add_card_info(support_list));
 		for (var i = 0; i < cards.length; i++) {
-			$('.support_cards_list',$page).append(make_card_listitem(cards[i]));
+			var $tmp = make_card_listitem(cards[i]);
+			if (cards[i].id == cardset.obelisk_pile) {
+				$('.xtra',$tmp).append(' <span class="bane_flag"> &mdash; Obelisk Pile</span>');
+			}
+			$('.support_cards_list',$page).append($tmp);
 		}
 		$('.support_cards_container',$page).show();
 	}
