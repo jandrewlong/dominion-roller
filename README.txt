@@ -17,7 +17,7 @@ Installation
 
 Git clone the source code onto your development workstation, then
 create a 'extlib' subdirectory, and copy into it these jar files:
- * jackson-core-2.1.x.jar (wiki.fasterxml.com/JacksonHome)
+ * jackson-core-2.9.x.jar (from repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core)
  * servlet-api.jar (from Google App Engine SDK)
  * appengine-api.jar (from Google App Engine SDK)
 
