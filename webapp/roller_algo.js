@@ -382,10 +382,13 @@ function make_support_list(cardset)
 
 		if (c.type && c.type.match(/Fate/)) {
 			support_cards["Boons"] = true;
+			// One of the boons give Will-o'-Wisp
+			support_cards["Will-o'-Wisp"] = true;
 		}
 
 		if (c.type && c.type.match(/Doom/)) {
 			support_cards["Hexes"] = true;
+			// Three hexes give states
 			support_cards["States"] = true;
 		}
 
