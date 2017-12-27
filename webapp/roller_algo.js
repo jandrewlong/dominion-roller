@@ -248,6 +248,7 @@ function make_cardset(cardlist)
 	var uses_ruins = false;
 	var needs_bane = false;  // Cornucopia's Young Witch card
 	var has_obelisk = false;  // Obelisk Landmark from Empires
+	var has_druid = false;  // Druid card from Nocturne
 	for (var i = 0; i < cardlist.length && kingdom_cards.length < 10; i++) {
 		var c = cardlist[i];
 		if (c.box_id == 'prosperity') {
@@ -272,6 +273,9 @@ function make_cardset(cardlist)
 					has_obelisk = true;
 				}
 			}
+		}
+		if (c.id == 'Druid') {
+			has_druid = true;
 		}
 		else {
 			kingdom_cards.push(c.id);
@@ -380,7 +384,9 @@ function make_support_list(cardset)
 			support_cards["Ruins"] = true;
 		}
 
+		// Fate type cards use Boons, but Druid won't require the whole pile
 		if (c.type && c.type.match(/Fate/)) {
+//		if (c.type && c.type.match(/Fate/) && c.id && !c.id == 'Druid') {
 			support_cards["Boons"] = true;
 			// One of the boons give Will-o'-Wisp
 			support_cards["Will-o'-Wisp"] = true;
