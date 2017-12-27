@@ -380,6 +380,15 @@ function make_support_list(cardset)
 			support_cards["Ruins"] = true;
 		}
 
+		if (c.type && c.type.match(/Fate/)) {
+			support_cards["Boons"] = true;
+		}
+
+		if (c.type && c.type.match(/Doom/)) {
+			support_cards["Hexes"] = true;
+			support_cards["States"] = true;
+		}
+
 		if (c.requires) {
 			for (var j = 0; j < c.requires.length; j++) {
 				support_cards[c.requires[j]]=true;
