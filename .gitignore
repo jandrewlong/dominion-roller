@@ -3,3 +3,4 @@ war
 extlib
 build
 deploy.appengine
+*.swp
