@@ -451,6 +451,9 @@ function show_cardset(cardset)
 		if (cards[i].id == cardset.obelisk_pile) {
 			$('.xtra',$tmp).append(' <span class="bane_flag"> &mdash; Obelisk Pile</span>');
 		}
+		if (cards[i].id == cardset.boon_list) {
+			$('.xtra',$tmp).append(' <span class="bane_flag"> &mdash; Druid\'s Boon</span>');
+		}
 		$('.kingdom_cards_list',$page).append($tmp);
 	}
 
