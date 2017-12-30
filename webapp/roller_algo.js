@@ -266,6 +266,9 @@ function make_cardset(cardlist)
 		if (c.id == 'Young Witch') {
 			needs_bane = true;
 		}
+		if (c.id == 'Druid') {
+			has_druid = true;
+		}
 		if (c.event) {
 			if (event_cards.length < 2) {
 				event_cards.push(c.id);
@@ -273,9 +276,6 @@ function make_cardset(cardlist)
 					has_obelisk = true;
 				}
 			}
-		}
-		if (c.id == 'Druid') {
-			has_druid = true;
 		}
 		else {
 			kingdom_cards.push(c.id);
@@ -349,6 +349,27 @@ function make_cardset(cardlist)
 			cardset.obelisk_pile = candidates[j];
 		} else {
 			throw "No eligible Obelisk Piles in kingdom";
+		}
+	}
+
+	if (has_druid) {
+		// get the list of boons
+		var candidates = all_cards.filter(
+			function(card) {
+				var c = get_card_info(card);
+				return c.type && c.type.match(/Boon/);
+			});
+
+		// pick 3 boons for the druid
+		if (candidates.length >= 3) {
+			cardset.boon_list = [];
+			for (var i = 0; i < 3; i++) {
+				var j = Math.floor(Math.random() * candidates.length);
+				cardset.boon_list.append(candidates[j]);
+				candidates.splice(j, 1);
+			}
+		} else {
+			throw "Not enough boons for Druid";
 		}
 	}
 
