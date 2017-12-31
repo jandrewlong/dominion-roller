@@ -353,12 +353,11 @@ function make_cardset(cardlist)
 	}
 
 	if (has_druid) {
-		// get the list of boons
+		// get the list of boons (using this list of boons)
 		var candidates = ["The Earth's Gift","The Field's Gift","The Flame's Gift","The Forest's Gift",
 							"The Moon's Gift","The Mountain's Gift","The River's Gift","The Sea's Gift",
 							"The Sky's Gift","The Sun's Gift","The Swamp's Gift","The Wind's Gift"];
-		// console.log(candidates.length)
-		
+
 /*		var candidates = all_cards.filter(
 			function(card) {
 				var c = get_card_info(card);
@@ -367,15 +366,12 @@ function make_cardset(cardlist)
 */
 		// pick 3 boons for the druid
 		if (candidates.length >= 3) {
-			// var boon_list = [];
 			cardset.boon_list = [];
 			for (var i = 0; i < 3; i++) {
 				var j = Math.floor(Math.random() * candidates.length);
 				cardset.boon_list.push(candidates[j]);
 				candidates.splice(j, 1);
 			}
-			// cardset.boon_list = boon_list;
-			// console.log(cardset);
 		} else {
 			throw "Not enough boons for Druid";
 		}
