@@ -354,20 +354,28 @@ function make_cardset(cardlist)
 
 	if (has_druid) {
 		// get the list of boons
-		var candidates = all_cards.filter(
+		var candidates = ["The Earth's Gift","The Field's Gift","The Flame's Gift","The Forest's Gift",
+							"The Moon's Gift","The Mountain's Gift","The River's Gift","The Sea's Gift",
+							"The Sky's Gift","The Sun's Gift","The Swamp's Gift","The Wind's Gift"];
+		// console.log(candidates.length)
+		
+/*		var candidates = all_cards.filter(
 			function(card) {
 				var c = get_card_info(card);
 				return c.type && c.type.match(/Boon/);
 			});
-
+*/
 		// pick 3 boons for the druid
 		if (candidates.length >= 3) {
+			// var boon_list = [];
 			cardset.boon_list = [];
 			for (var i = 0; i < 3; i++) {
 				var j = Math.floor(Math.random() * candidates.length);
-				cardset.boon_list.append(candidates[j]);
+				cardset.boon_list.push(candidates[j]);
 				candidates.splice(j, 1);
 			}
+			// cardset.boon_list = boon_list;
+			// console.log(cardset);
 		} else {
 			throw "Not enough boons for Druid";
 		}
@@ -406,8 +414,8 @@ function make_support_list(cardset)
 		}
 
 		// Fate type cards use Boons, but Druid won't require the whole pile
-		if (c.type && c.type.match(/Fate/)) {
-//		if (c.type && c.type.match(/Fate/) && c.id && !c.id == 'Druid') {
+// 		if (c.type && c.type.match(/Fate/)) {
+		if (c.type && c.type.match(/Fate/) && c.id && !c.id == 'Druid') {
 			support_cards["Boons"] = true;
 			// One of the boons give Will-o'-Wisp
 			support_cards["Will-o'-Wisp"] = true;
@@ -425,6 +433,13 @@ function make_support_list(cardset)
 			}
 		}
 	};
+
+	if (cardset.boon_list) {
+		for (var i = 0; i < cardset.boon_list.length; i++) {
+			support_cards[cardset.boon_list[i]]=true;
+			add_requirements_fn(cardset.boon_list[i]);
+		}
+	}
 
 	if (cardset.events) {
 		for (var i = 0; i < cardset.events.length; i++) {
