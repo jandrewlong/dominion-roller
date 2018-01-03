@@ -410,7 +410,8 @@ function make_support_list(cardset)
 		}
 
 		// Fate type cards use Boons, but Druid won't require the whole pile
-		if (c.type && c.type.match(/Fate/) && c.id && !c.id == 'Druid') {
+// 		if (c.type && c.type.match(/Fate/)) {
+		if (c.type && c.type.match(/Fate/) && c.id && c.id != 'Druid') {
 			support_cards["Boons"] = true;
 			// One of the boons give Will-o'-Wisp
 			support_cards["Will-o'-Wisp"] = true;
