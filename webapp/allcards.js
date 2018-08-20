@@ -348,7 +348,7 @@ allcards_data=
 {"id":"Crypt","box":"nocturne","type":"Night,Duration","cost":"5"},
 {"id":"Cursed Village","box":"nocturne","type":"Action,Doom","cost":"5"},
 {"id":"Den of Sin","box":"nocturne","type":"Night,Duration","cost":"5"},
-{"id":"Devil's Workshop","box":"nocturne","type":"Night","cost":"4"},
+{"id":"Devil's Workshop","box":"nocturne","type":"Night","cost":"4","requires":["Imp"]},
 {"id":"Druid","box":"nocturne","type":"Action,Fate","cost":"2"},
 {"id":"Exorcist","box":"nocturne","type":"Night","cost":"4","requires":["Ghost","Imp","Will-o'-Wisp"]},
 {"id":"Faithful Hound","box":"nocturne","type":"Action,Reaction","cost":"2"},
